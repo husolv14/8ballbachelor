@@ -17,7 +17,7 @@ Regler og retningslinjer:
 -	Master skal alltid være en fungerende versjon av programmet! Gjennomfør tester før du pusher til master.
 -	Skriv dokumentasjon underveis
 -	Vi bruker såkalt Feature branch workflow:
-Lag en ny branch når du lager en ny feature. Slik kan du jobbe samtidig som andre og uten å udelegge noe i master. Branchen merges med master når programmet er ferdig, testet og fungerer. 
+Lag en ny branch når du lager en ny feature. Slik kan du jobbe samtidig som andre og uten å ødelegge noe i master. Branchen merges med master når programmet er ferdig, testet og fungerer. 
 -	Jobb kun på èn annen branch av gangen og merge når ferdig. Det skal ikke lages drøssevis av branches, og hver branch skal ha et mål for når den skal merges.
 
 Hvem kan jeg spørre om hjelp?
