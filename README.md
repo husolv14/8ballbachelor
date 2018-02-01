@@ -5,6 +5,9 @@ Dette repository er til softwaremodul bachelorgruppe 8 lager for mittanbud.no.
 
 Hvordan sette opp utviklermiljø: 
 Prosjektet bruker git og bitbucket. Er du usikker på git, er det en god tutorial her: https://www.atlassian.com/git/tutorials eller her: https://www.lynda.com/Git-tutorials/Git-Essential-Training/100222-2.html
+1. Clone fra git til en mappe å arbeide i
+2. "npm install" i node i root mappen til projektet (8ballbachelor atm)
+3. "npm run dev" for å starte hotreload osv.
 
 Beskrivelse av utviklermiljø
 
