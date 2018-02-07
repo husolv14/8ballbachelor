@@ -1,20 +1,23 @@
 <template>
-  <ul class="list">
-
-    <li v-for="items in object"><h3>{{items.name}}</h3></li>
+  <ul draggable="false" class="list">
+    <draggable :options="{animation:50,group:'grid',multipleDropzonesItemsDraggingEnabled: true, clone: clone, pull: 'clone'}">
+    <li draggable="false" v-for="items in object"><h3 ondblclick="alert('Hello')" draggable="false" class = "item" >{{items.name}}</h3></li>
+    </draggable>
   </ul>
 </template>
 
 <script>
+
+  import draggable from 'vuedraggable'
 export default {
   name: 'list-generator',
   data () {
     return {
       object: [
         {
-          name: 'Tool1',
+          name: 'MagicFixer',
           url: 'http://www.google.no',
-          id: '1'
+          id: '12'
         },
         {
           name: 'Tool2',
@@ -47,24 +50,35 @@ export default {
           id: '7'
         },
         {
+          name: 'Tool8',
           url: 'http://www.google.com',
           id: '8'
         }
       ]
     }
+  },
+  components: {
+    draggable
   }
 }
 
 </script>
 
 <style scoped>
+ ul{
+   height: 100%;
+ }
 .list{
   list-style: none;
   text-align:center;
   text-decoration:none;
   color:white;
   padding:0;
+  display:inline;
+  animation: 400ms;
+  min-height: 100%;
 }
+
   link{
     text-decoration: none;
   }
@@ -73,5 +87,18 @@ export default {
     height: 50px;
     text-align:center;
     margin:2px;
+
+
   }
+  .draggable {
+    animation-delay: 4s;
+  }
+.sortable-chosen, sortable-chosen.sortable-ghost {
+  opacity: 0;
+  transition-duration: 4s;
+}
+.sortable-ghost {
+  background-color: #dadada;
+  opacity: 0;
+}
 </style>

@@ -9,11 +9,10 @@
 import Sidebar from '../components/Sidebar'
 import Grid from '../components/grid'
 export default {
-  name: 'Box',
+  name: 'main-wrapper',
   components: {
     Sidebar,
     Grid
-
   }
 }
 </script>

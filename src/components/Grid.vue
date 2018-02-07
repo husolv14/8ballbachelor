@@ -1,19 +1,40 @@
 <template>
-<h1>Grid</h1>
+
+  <ul>
+    <draggable class= "drag" :options="{animation:50,group:'grid',clone:clone}">
+      <li>1</li>
+      <li>2</li>
+    </draggable>
+    <api-fetch/>
+  </ul>
+
 </template>
 
 <script>
-
+  import draggable from 'vuedraggable'
+  import ApiFetch from './ApiFetch'
 export default {
-  name: 'grid'
+  name: 'grid',
+  components: {
+    draggable,
+    //ApiFetch
+  }
 }
 
 </script>
 
 <style scoped>
-  h1{
+  li{
+    opacity: 0;
+  }
+  .drag{
+    width: 80%;
     float:left;
-    margin-left: 20px;
+    list-style: none;
+    display:inline-flex;
+  }
+  h3{
+    width: 10%;
   }
 
 </style>
