@@ -1,14 +1,19 @@
+
 <template>
+  <!--Dette er template, her skal all html ligge-->
   <div class="hello">
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
+  //javascript i komponenten
 export default {
+  //navnet på componenten
   name: 'HelloWorld',
   data () {
     return {
+      //data i komponent
       msg: 'Gutta Boyz'
     }
   }
