@@ -14,7 +14,7 @@
 export default {
   name: 'grid',
   components: {
-    draggable,
+    draggable
     //ApiFetch
   }
 }
@@ -30,10 +30,11 @@ export default {
     float:left;
     list-style: none;
     display:inline-flex;
-    min-height: 100px;
+    min-height: 450px;
     background-color: #FFF;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
   h3{
     width: 10%;

@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .Sidebar{
 width:18%;
-  background-color:#29363d;
+  background-color:#a4b7c1;
   height: 100%;
   color:white;
   position:relative;
