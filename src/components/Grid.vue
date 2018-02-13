@@ -31,6 +31,9 @@ export default {
     list-style: none;
     display:inline-flex;
     min-height: 100px;
+    background-color: #FFF;
+    margin-top: 10px;
+    margin-left: 10px;
   }
   h3{
     width: 10%;
