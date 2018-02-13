@@ -2,8 +2,6 @@
 
   <ul>
     <draggable class= "drag" :options="{animation:50,group:'grid',clone:clone}">
-      <li>1</li>
-      <li>2</li>
     </draggable>
     <api-fetch/>
   </ul>
@@ -32,6 +30,7 @@ export default {
     float:left;
     list-style: none;
     display:inline-flex;
+    min-height: 100px;
   }
   h3{
     width: 10%;
