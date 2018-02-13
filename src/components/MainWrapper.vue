@@ -7,7 +7,7 @@
 
 <script>
 import Sidebar from '../components/Sidebar'
-import Grid from '../components/grid'
+import Grid from '../components/Grid'
 export default {
   name: 'main-wrapper',
   components: {

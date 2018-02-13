@@ -1,4 +1,5 @@
 <template>
+
   <div>
   <ul v-if="posts && posts.length">
     <li v-for="post of posts">
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-  import axios from 'axios';
-
+  /*eslint-disable*/
+  import axios from 'axios'
   export default {
     data() {
       return {

@@ -1,7 +1,6 @@
 <template>
   <div class="Sidebar">
-    <h2>Sidebar</h2>
-     <listGenerator/>
+     <list-generator/>
   </div>
 </template>
 
@@ -24,5 +23,6 @@ width:18%;
   color:white;
   position:relative;
   float:left;
+  overflow: scroll;
 }
 </style>

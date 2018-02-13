@@ -1,14 +1,13 @@
 <template>
   <ul draggable="false" class="list">
     <draggable :options="{animation:50,group:'grid',multipleDropzonesItemsDraggingEnabled: true, clone: clone, pull: 'clone'}">
-    <li draggable="false" v-for="items in object"><h3 ondblclick="alert('Hello')" draggable="false" class = "item" >{{items.name}}</h3></li>
+    <li draggable="false" v-bind:key="items.id" v-for="items in object"><div ondblclick="alert('Hello person')" draggable="false" class = "item" >{{items.name}}</div></li>
     </draggable>
   </ul>
 </template>
 
 <script>
-
-  import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
 export default {
   name: 'list-generator',
   data () {
@@ -77,18 +76,19 @@ export default {
   display:inline;
   animation: 400ms;
   min-height: 100%;
+
 }
 
   link{
     text-decoration: none;
   }
-  h3{
+  .item{
     border: 2px solid black;
     height: 50px;
     text-align:center;
     margin:2px;
-
-
+    height:100px;
+    min-width: 200px;
   }
   .draggable {
     animation-delay: 4s;
