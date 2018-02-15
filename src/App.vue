@@ -1,16 +1,19 @@
 <template>
   <div id="app">
+
     <main-wrapper/>
   </div>
 </template>
 
 <script>
 import MainWrapper from './components/MainWrapper'
+import TopBar from './components/TopBar'
 
 export default {
   name: 'App',
   components: {
-    MainWrapper
+    MainWrapper,
+    TopBar
   }
 }
 </script>

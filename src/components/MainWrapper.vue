@@ -1,25 +1,30 @@
 <template>
-<div class = "mainBox">
+<div class = "mainWrapper">
+
 <sidebar/>
 <grid/>
+  <!--modal/-->
 </div>
+
 </template>
 
 <script>
 import Sidebar from '../components/Sidebar'
 import Grid from '../components/Grid'
+import Modal from '../components/Modal'
 export default {
   name: 'main-wrapper',
   components: {
     Sidebar,
-    Grid
+    Grid,
+    Modal
   }
 }
 </script>
 
 <style scoped>
-.mainBox{
-  height: 40em;
+.mainWrapper{
+  height: 45em;
   background-color: #f0f3f5;
 }
   h3{

@@ -1,18 +1,34 @@
 <template>
+  <div>
+    <select class="drop">
+      <option class="option" v-for="items in object">
+        {{items.name}}
+      </option>
+    </select>
   <ul draggable="false" class="list">
-    <draggable :options="{animation:50,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}">
-    <li v-bind:key="items.id" v-for="items in object">
-      <div ondblclick="alert('Hello person')" class = "item" >
+    <draggable :move="true" :list="list" :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" >
+
+    <!--li v-bind:key="items.id" v-for="items in object"-->
+      <div draggable="false" v-for="items in object" v-bind:key="items.id" ondblclick="alert('Hello person')" class = "item" >
       {{items.name}}
       <br><img class="icon" :src="items.icon"/>
+
+        <!--button onclick="remove()">x</button-->
     </div>
-    </li>
+    <!--/li-->
     </draggable>
   </ul>
+    <!--<draggable :options="{group:'grid'}">
+      <div class="item" v-for="items in object">{{items.name}}</div>
+
+    </draggable>-->
+  </div>
+
 </template>
 
 <script>
 import draggable from 'vuedraggable'
+
 export default {
   name: 'list-generator',
   data () {
@@ -21,32 +37,34 @@ export default {
         {
           name: 'MagicFixer',
           url: 'http://www.google.no',
-          id: '12',
+          id: '1',
           icon : 'https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png'
 
         },
         {
-          name: 'Tool2',
+          name: 'Mail',
           url: 'http://www.google.com',
           id: '2',
           icon : 'http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png'
 
         },
         {
-          name: 'Tool3',
+          name: 'Graphbloop',
           url: 'http://www.google.com',
           id: '3',
           icon: 'http://www.pvhc.net/img114/ttxcvpkwqouwoklwwvqs.png'
         },
         {
-          name: 'Tool4',
+          name: 'Conditional',
           url: 'http://www.google.com',
-          id: '4'
+          id: '4',
+          icon: 'https://julien.danjou.info/media/images/blog/2015/fork_icon.png'
         },
         {
-          name: 'Tool5',
+          name: 'Status',
           url: 'http://www.google.com',
-          id: '5'
+          id: '5',
+          icon: 'http://www.pvhc.net/img130/cxbjkmnziliplxfojxdc.jpg'
         },
         {
           name: 'Tool6',
@@ -73,6 +91,7 @@ export default {
 
 </script>
 
+
 <style scoped>
  ul{
    height: 100%;
@@ -97,15 +116,13 @@ export default {
     width: 200px;
     margin-top: 2%;
     margin-bottom: 2%;
-    /*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);*/
   }
   .item{
     /*border: 2px solid black;*/
-    -webkit-user-drag: none;
-    height: auto;
+    height: 156.55px;
     text-align:center;
     margin:2px;
-    min-width: 200px;
+    min-width: 233.78px;
     margin: 20px 10px 10px 10px;
     background-color: #f0f3f5;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -115,12 +132,16 @@ export default {
   .item:hover{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-  .draggable {
-    animation-delay: 4s;
+  .drop{
+    height: 50px;
+    width: 80%;
   }
+  .drop option{
+    padding: 50px;
+  }
+
 .sortable-chosen, sortable-chosen.sortable-ghost {
-  opacity: 0;
-  transition-duration: 4s;
+  opacity: 1;
 }
 .sortable-ghost {
   background-color: #dadada;
