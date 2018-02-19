@@ -11,13 +11,13 @@
 <script>
 import Sidebar from '../components/Sidebar'
 import Grid from '../components/Grid'
-import Modal from '../components/Modal'
+//import Modal from '../components/Modal'
 export default {
   name: 'main-wrapper',
   components: {
     Sidebar,
     Grid,
-    Modal
+    //Modal
   }
 }
 </script>
