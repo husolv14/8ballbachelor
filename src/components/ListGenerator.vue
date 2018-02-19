@@ -68,7 +68,7 @@ export default {
         },
         {
           name: 'Tool6',
-          url: 'http://www.google.com',
+          url: 'http://www.google.coms',
           id: '6'
         },
         {
