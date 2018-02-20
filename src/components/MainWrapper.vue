@@ -16,7 +16,7 @@ export default {
   name: 'main-wrapper',
   components: {
     Sidebar,
-    Grid,
+    Grid
     //Modal
   }
 }
