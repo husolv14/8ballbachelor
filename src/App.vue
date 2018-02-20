@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-
+    <top-bar></top-bar>
     <main-wrapper/>
   </div>
 </template>
 
 <script>
 import MainWrapper from './components/MainWrapper'
-
+import TopBar from './components/TopBar'
 export default {
   name: 'App',
   components: {
-    MainWrapper
+    MainWrapper,
+    TopBar
   }
 }
 </script>
@@ -24,6 +25,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: #3e515b;
 }
 </style>
