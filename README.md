@@ -9,6 +9,8 @@ Prosjektet bruker git og bitbucket. Er du usikker på git, er det en god tutoria
 2. "npm install" i node i root mappen til projektet (8ballbachelor atm)
 3. "npm run dev" for å starte hotreload osv.
 4. Kjører ikke koden etter git pull? npm install
+5. Install en JSON SERVER "npm install -g json-server" (-g = global)
+6. cd til /src/assets. Kjør "json-server --watch db.json"
 
 Beskrivelse av utviklermiljø
 

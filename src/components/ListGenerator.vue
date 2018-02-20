@@ -28,64 +28,28 @@
 
 <script>
 import draggable from 'vuedraggable'
+import axios from 'axios'
 
 export default {
   name: 'list-generator',
-  data () {
-    return {
-      object: [
-        {
-          name: 'MagicFixer',
-          url: 'http://www.google.no',
-          id: '1',
-          icon: 'https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png',
+    data() {
+      return {
+        object: [],
+        errors: []
+      }
+    },
 
-        },
-        {
-          name: 'Mail',
-          url: 'http://www.google.com',
-          id: '2',
-          icon: 'http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png',
-          mail: 'olve.husby@gmail.com',
-          date: '',
-
-        },
-        {
-          name: 'Graphbloop',
-          url: 'http://www.google.com',
-          id: '3',
-          icon: 'http://www.pvhc.net/img114/ttxcvpkwqouwoklwwvqs.png'
-        },
-        {
-          name: 'Conditional',
-          url: 'http://www.google.com',
-          id: '4',
-          icon: 'https://julien.danjou.info/media/images/blog/2015/fork_icon.png'
-        },
-        {
-          name: 'Status',
-          url: 'http://www.google.com',
-          id: '5',
-          icon: 'http://www.pvhc.net/img130/cxbjkmnziliplxfojxdc.jpg'
-        },
-        {
-          name: 'Tool6',
-          url: 'http://www.google.coms',
-          id: '6'
-        },
-        {
-          name: 'Tool7',
-          url: 'http://www.google.com',
-          id: '7'
-        },
-        {
-          name: 'Tool8',
-          url: 'http://www.google.com',
-          id: '8'
-        }
-      ]
-    }
-  },
+    // Fetches posts when the component is created.
+    created() {
+      axios.get(`http://localhost:3000/object`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.object = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    },
   components: {
     draggable
   }
