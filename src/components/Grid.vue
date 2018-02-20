@@ -4,9 +4,13 @@
   <ul>
     <draggable :list="list" class= "drag" :options="{animation:150,group:'grid',clone:clone}">
     </draggable>
-
     <api-fetch/>
   </ul>
+    <div id="example">
+      <button v-on:click="greet">Greet</button>
+      <div v-if="test">yay</div>
+      <div v-else="">nei</div>
+    </div>
   </div>
 </template>
 
@@ -15,9 +19,17 @@
   import ApiFetch from './ApiFetch'
 export default {
   name: 'grid',
+  data:{
+    test: true
+  },
   components: {
     draggable
     //ApiFetch
+  },
+  methods: {
+    greet: function (){
+      alert('it works')
+    }
   }
 }
 

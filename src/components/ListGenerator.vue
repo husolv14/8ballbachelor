@@ -38,14 +38,16 @@ export default {
           name: 'MagicFixer',
           url: 'http://www.google.no',
           id: '1',
-          icon : 'https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png'
+          icon: 'https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png',
 
         },
         {
           name: 'Mail',
           url: 'http://www.google.com',
           id: '2',
-          icon : 'http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png'
+          icon: 'http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png',
+          mail: 'olve.husby@gmail.com',
+          date: '',
 
         },
         {
