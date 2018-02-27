@@ -1,12 +1,12 @@
 <template>
 
   <div>
-  <ul v-if="posts && posts.length">
-    <li v-for="post of posts">
-      <p><strong>{{post.title}}</strong></p>
-      <p>{{post.body}}</p>
-    </li>
-  </ul>
+  <div v-if="object && object.length">
+    <div v-for="object of object">
+      <p><strong>{{object.url}}</strong></p>
+      <p>{{object.id}}</p>
+    </div>
+  </div>
 
 
   <ul v-if="errors && errors.length">
@@ -23,17 +23,17 @@
   export default {
     data() {
       return {
-        posts: [],
+        object: [],
         errors: []
       }
     },
 
     // Fetches posts when the component is created.
     created() {
-      axios.get(`http://jsonplaceholder.typicode.com/posts`)
+      axios.get(`http://localhost:3000/object`)
         .then(response => {
           // JSON responses are automatically parsed.
-          this.posts = response.data
+          this.object = response.data
         })
         .catch(e => {
           this.errors.push(e)
