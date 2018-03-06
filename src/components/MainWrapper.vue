@@ -24,7 +24,7 @@
 
 <style scoped>
   .mainWrapper {
-    height: 45em;
+    height: 53em;
     background-color: #f0f3f5;
   }
 

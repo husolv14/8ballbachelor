@@ -53,7 +53,7 @@
   .titleText {
     text-align: left;
     padding-top: 21px;
-
+    font-size: 20px;
   }
 
 </style>

@@ -8,10 +8,12 @@
     },
     {
       "name": "Mail",
+      "description": "Dette er mail verktøyet. Den kan osv osv",
       "url": "http://www.google.com",
       "id": "2",
       "icon": "http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png",
       "mail": "olve.husby@gmail.com",
+      "check": true,
       "date": ""
     },
     {
@@ -24,7 +26,8 @@
       "name": "Conditional",
       "url": "http://www.google.com",
       "id": "4",
-      "icon": "https://julien.danjou.info/media/images/blog/2015/fork_icon.png"
+      "icon": "https://julien.danjou.info/media/images/blog/2015/fork_icon.png",
+      "conditional": true
     },
     {
       "name": "Status",
