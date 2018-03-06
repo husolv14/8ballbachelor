@@ -1,16 +1,16 @@
 <template>
   <div class="Sidebar">
-    <list-generator/>
+    <widget/>
   </div>
 </template>
 
 <script>
-  import ListGenerator from '../components/ListGenerator.vue'
+  import Widget from '../components/Widget.vue'
 
   export default {
     name: 'Sidebar',
     components: {
-      ListGenerator
+      Widget
     }
   }
 

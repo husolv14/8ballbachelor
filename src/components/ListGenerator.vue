@@ -1,18 +1,8 @@
 <template>
   <div>
-
-    <select class="drop">
-      <option class="option" v-for="items in widgetData">
-        {{items.name}}
-      </option>
-    </select>
-    <ul draggable="false" class="list">
-      <!--draggable
-        :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}"-->
-        <Widget></Widget>
-<!--
-        li v-bind:key="items.id" v-for="items in object"
-        <div draggable="false" v-for="items in widgetData" v-bind:key="items.id" @dblclick="showModal=true"
+        <draggable
+          :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}">
+        <div draggable="false" v-for="items in thisProp" v-bind:key="items.id" @dblclick="showModal=true"
              @dbclick="showModal= true" class="item">
           {{items.name}}
           <br><img class="icon" :src="items.icon"/>
@@ -46,52 +36,30 @@
               </div>
             </transition>
           </div>
-          button onclick="remove()">x</button
         </div>
-        /li-->
-      <!--draggable-->
-    </ul>
-    <!--<draggable :options="{group:'grid'}">
-      <div class="item" v-for="items in object">{{items.name}}</div>
-
-    </draggable>-->
-  </div>
+        </draggable>
+      </div>
 
 </template>
 
 <script>
   import draggable from 'vuedraggable'
-  import axios from 'axios'
   import Bmodal from 'bootstrap-vue/src/components/modal/modal.js'
-  import Widget from './Widget'
+
 
   export default {
     name: 'list-generator',
     data() {
-      return {
-        widgetData: [],
-        errors: [],
-        showModal: ""
-      }
-    },
-
-    // Fetches posts when the component is created.
-    created() {
-      axios.get(`http://localhost:3000/widgetData`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.widgetData = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+      return {showModal: false}
     },
     components: {
       draggable,
-      Bmodal,
-      Widget
+      Bmodal
 
-    }
+    },
+    props: [
+      "thisProp"
+    ]
   }
 
 </script>
@@ -118,7 +86,7 @@
     text-decoration: none;
   }
 
-  /*.icon {
+  .icon {
     height: 120px;
     width: 200px;
     margin-top: 2%;
@@ -126,7 +94,7 @@
   }
 
   .item {
-    !*border: 2px solid black;*!
+    /*border: 2px solid black;*/
     height: 156.55px;
     text-align: center;
     margin: 2px;
@@ -136,11 +104,12 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: box-shadow 0.1s ease-in-out;
     font-size: larger;
+    color: black;
   }
 
   .item:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  }*/
+  }
 
   .drop {
     height: 50px;
@@ -151,7 +120,7 @@
     padding: 50px;
   }
 
-  /*.sortable-chosen, sortable-chosen.sortable-ghost {
+  .sortable-chosen, sortable-chosen.sortable-ghost {
     opacity: 1;
   }
 
@@ -159,6 +128,39 @@
     background-color: #dadada;
     opacity: 1;
   }
-*/
+  .modal-mask {
+    position: fixed;
+    z-index: 9998;
+    left: 35%;
+    top: 10%;
+    background-color: rgb(255, 255, 255);
+    display: table;
+    transition: opacity .3s ease;
+  }
+
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    width: 40%;
+    height: auto;
+    border: 1px solid lightgray;
+  }
+
+  .close {
+    float: right;
+    border: none;
+    color: darkred;
+    background-color: white;
+    font-size: 35px;
+    display: block;
+  }
+
+  .modal-content {
+    height: 100%;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
 
 </style>
