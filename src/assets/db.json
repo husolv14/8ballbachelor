@@ -1,31 +1,33 @@
 {
   "widgetData": [
     {
-      "name": "MagicFixer",
-      "url": "http://www.google.no",
       "id": "1",
-      "icon": "https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png"
+      "name": "MagicFixer",
+      "description": "Denne er magisk, og ikke på en bra måte",
+      "icon": "https://cdn0.iconfinder.com/data/icons/infographic-bar-vol-9/512/1-512.png",
+      "check": true
     },
     {
+      "id": "2",
       "name": "Mail",
       "description": "Dette er mail verktøyet. Den kan osv osv",
-      "url": "http://www.google.com",
-      "id": "2",
       "icon": "http://icon-park.com/imagefiles/mail_vector_icon_light_blue.png",
       "mail": "olve.husby@gmail.com",
       "check": true,
-      "date": ""
+      "date": "01/01/2001"
+
     },
     {
-      "name": "Graphbloop",
-      "url": "http://www.google.com",
       "id": "3",
-      "icon": "http://www.pvhc.net/img114/ttxcvpkwqouwoklwwvqs.png"
+      "name": "Graphbloop",
+      "description":"This is the amazing graphbloop",
+      "icon": "http://www.pvhc.net/img114/ttxcvpkwqouwoklwwvqs.png",
+      "value" : "3.14"
     },
     {
-      "name": "Conditional",
-      "url": "http://www.google.com",
       "id": "4",
+      "name": "Conditional",
+      "description": ""
       "icon": "https://julien.danjou.info/media/images/blog/2015/fork_icon.png",
       "conditional": true
     },

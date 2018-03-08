@@ -1,16 +1,19 @@
 <template>
   <div class="Sidebar">
-    <widget/>
+    <!--<widget/>-->
+    <api-fetch/>
   </div>
 </template>
 
 <script>
-  import Widget from '../components/Widget.vue'
+ // import Widget from '../components/Widget.vue'
+  import ApiFetch from './ApiFetch'
 
   export default {
     name: 'Sidebar',
     components: {
-      Widget
+      //Widget,
+      ApiFetch
     }
   }
 
@@ -18,7 +21,7 @@
 
 <style scoped>
   .Sidebar {
-    width: 18%;
+    width: auto;
     background-color: #a4b7c1;
     height: 100%;
     color: white;
