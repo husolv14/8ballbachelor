@@ -7,10 +7,8 @@ Hvordan sette opp utviklermiljø:
 Prosjektet bruker git og bitbucket. Er du usikker på git, er det en god tutorial her: https://www.atlassian.com/git/tutorials eller her: https://www.lynda.com/Git-tutorials/Git-Essential-Training/100222-2.html
 1. Clone fra git til en mappe å arbeide i
 2. "npm install" i node i root mappen til projektet (8ballbachelor atm)
-3. "npm run dev" for å starte hotreload osv.
+3. npm start ( kjører npm run dev | npm run server)
 4. Kjører ikke koden etter git pull? npm install
-5. Install en JSON SERVER "npm install -g json-server" (-g = global)
-6. cd til /src/assets. Kjør "json-server --watch db.json"
 
 Beskrivelse av utviklermiljø
 

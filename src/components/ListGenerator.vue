@@ -1,50 +1,16 @@
 <template>
-  <div>
-        <draggable
+  <draggable
           :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}">
-        <div draggable="false" v-for="items in thisProp" v-bind:key="items.id" @dblclick="showModal=true"
-             @dbclick="showModal= true" class="item">
-          {{items.name}}
-          <br><img class="icon" :src="items.icon"/>
-          <div v-if="showModal">
-            <transition name="modal">
-              <div class="modal-mask">
-                <div class="modal-wrapper">
-                  <button type="button" class="close" @click="showModal=false">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title">{{items.name}}</h4>
-                        <p>{{items.description}}</p>
-                        <input id="check1" v-if="items.check" type="checkbox" value="Hallo" checked>
-                        <input id="check2" v-else type="checkbox" value="Hallo">
-                        <label v-if="items.check" for="check1">True</label>
-                        <label v-else for="check2">False</label>
 
 
-                      </div>
-                      <div class="modal-body">
-                        <select>
-                          <option>{{items.mail}}</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </transition>
-          </div>
-        </div>
-        </draggable>
-      </div>
-
+  </draggable>
 </template>
 
 <script>
   import draggable from 'vuedraggable'
   import Bmodal from 'bootstrap-vue/src/components/modal/modal.js'
+  import Modal from './Modal'
+  import Widget from "./Widget";
 
 
   export default {
@@ -53,8 +19,10 @@
       return {showModal: false}
     },
     components: {
+      Widget,
       draggable,
-      Bmodal
+      Bmodal,
+      Modal
 
     },
     props: [

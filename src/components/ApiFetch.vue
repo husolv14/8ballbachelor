@@ -1,44 +1,41 @@
 <template>
-
   <div>
-  <div v-if="object && object.length">
-    <div v-for="object of object">
-      <p><strong>{{object.url}}</strong></p>
-      <p>{{object.id}}</p>
+    <div v-for="item in widgetData">
+      <Widget :widgetItem = "item"></Widget>
     </div>
-  </div>
 
 
-  <ul v-if="errors && errors.length">
-    <li v-for="error of errors">
-      {{error.message}}
-    </li>
-  </ul>
   </div>
 </template>
 
 <script>
-  /*eslint-disable*/
   import axios from 'axios'
+  import Widget from './Widget'
+
   export default {
+    components: {Widget},
+    name: "ApiWidget",
     data() {
       return {
-        object: [],
+        widgetData: [],
         errors: []
       }
     },
+  component:{
+    Widget
+  },
 
     // Fetches posts when the component is created.
     created() {
-      axios.get(`http://localhost:3000/object`)
+      axios.get(`http://localhost:3000/widgetData`)
         .then(response => {
           // JSON responses are automatically parsed.
-          this.object = response.data
+          this.widgetData = response.data
         })
         .catch(e => {
           this.errors.push(e)
         })
-
+    },
       // async / await version (created() becomes async created())
       //
       // try {
@@ -47,6 +44,5 @@
       // } catch (e) {
       //   this.errors.push(e)
       // }
-    }
   }
 </script>
