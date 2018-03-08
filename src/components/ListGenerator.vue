@@ -1,6 +1,5 @@
 <template>
-  <draggable
-          :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}">
+  <draggable :options="listGeneratorOptions">
 
 
   </draggable>
@@ -27,7 +26,16 @@
     },
     props: [
       "thisProp"
-    ]
+    ],
+    computed: {
+      listGeneratorOptions() {
+        return {
+        animation:150,
+          group:{name: 'grid', pull: 'clone', put:false},
+          multipleDropzonesItemsDraggingEnabled: true
+        }
+      }
+    }
   }
 
 </script>

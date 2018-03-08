@@ -3,8 +3,6 @@
     <div v-for="item in widgetData">
       <Widget :widgetItem = "item"></Widget>
     </div>
-
-
   </div>
 </template>
 
@@ -24,7 +22,6 @@
   component:{
     Widget
   },
-
     // Fetches posts when the component is created.
     created() {
       axios.get(`http://localhost:3000/widgetData`)

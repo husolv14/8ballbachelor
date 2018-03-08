@@ -1,6 +1,5 @@
 <template>
   <div class="mainWrapper">
-
     <sidebar/>
     <grid/>
     <!--modal/-->
