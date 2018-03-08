@@ -1,27 +1,44 @@
 <template>
-  <div>
-    <!--<transition name="modal">-->
-      <!--<div class="modal-mask">-->
-                <!--<div class="modal-wrapper">-->
-                  <!--<button type="button" class="close" @click="showModal=false">-->
-                    <!--<span aria-hidden="true">&times;</span>-->
-                  <!--</button>-->
-                  <!--<div class="modal-dialog">-->
-                    <!--<div class="modal-content">-->
-                      <!--<div class="modal-header">-->
-                        <!--<h4 class="modal-title">{{ }}</h4>-->
-                        <!--<p>{{test.name}}</p>-->
-              <!--</div>-->
-              <!--<div class="modal-body">-->
-                <!--<h1>{{test.id}}</h1>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</transition>-->
-    <h1>{{test.id}}</h1>
-  </div>
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <span aria-hidden="true"></span>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title">{{widgetItem.name}}</h1>
+            </div>
+
+            <div class="modal-body">
+              <img class="icon" :src="widgetItem.icon"/>
+              <p>{{widgetItem.description}}</p>
+              <div v-show="widgetItem.mail">
+                <p>Avsender</p>
+
+                <select class="select" id="from">
+                  <option v-for="mail in widgetItem.mail">{{mail}}</option>
+                </select>
+                </br>
+
+                <p>Mottaker</p>
+                <select class="select" id="to">
+                  <option v-for="mail in widgetItem.mail">{{mail}}</option>
+                </select>
+                <br><br>
+                ​
+                <textarea rows="10" cols="70">{{widgetItem.standard}}</textarea>
+
+              </div>
+              <br><br>
+              <button>Submit</button>
+              <button>Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+
 </template>
 
 <script>
@@ -32,16 +49,17 @@
     name: "modal",
     data() {
       return {
-        showModal: false
+        showModal: true
 
       }
     },
     components: {
       Bmodal
     },
-    props:[
+    props: [
       "myProp",
-      'test'
+      'widgetItem',
+      "showModal"
     ]
   }
 </script>
@@ -56,17 +74,21 @@
     display: table;
     transition: opacity .3s ease;
     color: black;
+    min-width: 40%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
-    width: 40%;
+    width: auto;
     height: auto;
+    min-width: 15%;
     border: 1px solid lightgray;
   }
 
   .close {
+    position: fixed;
     float: right;
     border: none;
     color: darkred;
@@ -76,10 +98,27 @@
   }
 
   .modal-content {
-    height: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .modal-title {
+    width: 100%;
   }
 
   .modal-body {
     padding: 20px;
+  }
+
+  button {
+    height: 40px;
+    width: 100px;
+    margin-left: 10px;
+  }
+  .icon{
+    height: 80px;
+  }
+  .select{
+    font-size: 20px;
   }
 </style>

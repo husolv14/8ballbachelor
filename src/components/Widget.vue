@@ -1,15 +1,18 @@
 <template>
   <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
+  <div>
   <draggable
     :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list">
   <div draggable="false" @dblclick="showModal=true" @dbclick="showModal= true" class="item">
     {{widgetItem.name}}
     <br><img class="icon" :src="widgetItem.icon"/>
     <div v-if="showModal">
-      <Modal :test="widgetItem"></Modal>
+      <Modal :showModal ="showModal" :widgetItem="widgetItem"></Modal>
     </div>
   </div>
   </draggable>
+
+  </div>
 </template>
 
 <script>
@@ -49,7 +52,7 @@
     /*border: 2px solid black;*/
     height: 156.55px;
     text-align: center;
-    margin: 2px;
+    /*margin: 2px;*/
     min-width: 233.78px;
     margin: 20px 10px 10px 10px;
     background-color: #f0f3f5;
@@ -57,6 +60,9 @@
     transition: box-shadow 0.1s ease-in-out;
     font-size: larger;
     color: black;
+  }
+  .item:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
   .list {
     list-style: none;
@@ -67,6 +73,5 @@
     display: inline;
     animation: 400ms;
     min-height: 100%;
-
   }
 </style>

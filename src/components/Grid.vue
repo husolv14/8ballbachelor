@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="titleBar">
-      <div class="titleText">A beautiful title of the tool you are using, or something..</div>
+      <div class="titleText">8BallBachelor</div>
     </div>
     <ul>
       <draggable :list="list" class="drag" :options="{animation:150,group:'grid',clone:clone}">
@@ -54,6 +54,8 @@
     text-align: left;
     padding-top: 21px;
     font-size: 20px;
+    margin-left: 15%;
+    font-weight: bold;
   }
 
 </style>
