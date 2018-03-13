@@ -8,34 +8,58 @@
             <div class="modal-header">
               <h1 class="modal-title">{{widgetItem.name}}</h1>
             </div>
+              <div class="modal-body">
+                <img class="icon" :src="widgetItem.icon"/>
 
-            <div class="modal-body">
-              <img class="icon" :src="widgetItem.icon"/>
-              <p>{{widgetItem.description}}</p>
+                <p>{{widgetItem.description}}</p>
+                <div v-show="widgetItem.standard">
+
+                  <!--<p>Mottaker</p>-->
+                  <!--<select class="select" id="to">-->
+                  <!--<option v-for="mail in widgetItem.mail">{{mail}}</option>-->
+                  <!--</select>-->
+                  <!--<br>-->
+                  <!--<p>Mail-Frekvens</p>-->
+                  <!--<select id="freq">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                  </select>
+                  <br><br>
+                  ​-->
+                  <textarea rows="10" cols="70">{{widgetItem.standard}}</textarea>
+                  <br><br>
+                </div>
+              </div>
               <div v-show="widgetItem.mail">
                 <p>Avsender</p>
-
                 <select class="select" id="from">
                   <option v-for="mail in widgetItem.mail">{{mail}}</option>
                 </select>
-                </br>
+                <br>
+              </div>
+              <div v-show="widgetItem.user">
+                <input type="text"/>
+                <div>{{query('id=2')}}</div>
+                <textarea rows="20" cols="70">se her: {{userData}}</textarea>
 
-                <p>Mottaker</p>
-                <select class="select" id="to">
-                  <option v-for="mail in widgetItem.mail">{{mail}}</option>
-                </select>
-                <br><br>
-                ​
-                <textarea rows="10" cols="70">{{widgetItem.standard}}</textarea>
 
               </div>
-              <br><br>
-              <button>Submit</button>
+              <br>
+              <div></div>
+              <button type="submit">Submit</button>
               <button>Cancel</button>
-            </div>
           </div>
+
         </div>
+
+
       </div>
+
     </div>
   </transition>
 
@@ -44,22 +68,41 @@
 <script>
 
   import Bmodal from 'bootstrap-vue/src/components/modal/modal.js'
+  import axios from 'axios'
 
   export default {
     name: "modal",
     data() {
       return {
-        showModal: true
+        showModal: true,
+        userData: []
+
+      }
+    },
+    methods:{
+      query(data) {
+        axios.get(`http://localhost:3000/users?` + data)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.userData = response.data
+            return this.userData.name
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+
 
       }
     },
     components: {
-      Bmodal
+      Bmodal,
+      axios
     },
     props: [
       "myProp",
       'widgetItem',
-      "showModal"
+      "showModal",
+      "users"
     ]
   }
 </script>
@@ -115,10 +158,12 @@
     width: 100px;
     margin-left: 10px;
   }
-  .icon{
+
+  .icon {
     height: 80px;
   }
-  .select{
+
+  .select {
     font-size: 20px;
   }
 </style>

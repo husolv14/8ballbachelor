@@ -27,6 +27,6 @@
     color: white;
     position: relative;
     float: left;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 </style>

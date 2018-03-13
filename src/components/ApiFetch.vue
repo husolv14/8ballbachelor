@@ -18,12 +18,13 @@
     data() {
       return {
         widgetData: [],
-        errors: []
+        errors: [],
+        userData: []
       }
     },
-  component:{
-    Widget
-  },
+    component: {
+      Widget
+    },
 
     // Fetches posts when the component is created.
     created() {
@@ -31,11 +32,12 @@
         .then(response => {
           // JSON responses are automatically parsed.
           this.widgetData = response.data
+
         })
         .catch(e => {
           this.errors.push(e)
         })
-    },
+
       // async / await version (created() becomes async created())
       //
       // try {
@@ -44,5 +46,6 @@
       // } catch (e) {
       //   this.errors.push(e)
       // }
+    }
   }
 </script>

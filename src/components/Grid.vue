@@ -12,10 +12,12 @@
 
 <script>
   import draggable from 'vuedraggable'
+  import Modal from "./Modal";
 
   export default {
     name: 'grid',
     components: {
+      Modal,
       draggable
     },
   }
@@ -32,7 +34,7 @@
     float: left;
     list-style: none;
     display: inline-flex;
-    min-height: 450px;
+    min-height: 225px;
     background-color: #FFF;
     margin-top: 20px;
     margin-left: 10px;

@@ -1,9 +1,10 @@
 <template>
-  <draggable
+
+        <draggable
           :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}">
+        </draggable>
 
 
-  </draggable>
 </template>
 
 <script>
