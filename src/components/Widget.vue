@@ -3,11 +3,11 @@
   <div>
   <draggable
     :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list">
-  <div draggable="false" @dblclick="showModal=true" @dbclick="showModal= true" class="item">
+  <div draggable="false" @dblclick="showModal=true" class="item">
     {{widgetItem.name}}
     <br><img class="icon" :src="widgetItem.icon"/>
     <div v-if="showModal">
-      <Modal :showModal ="showModal" :widgetItem="widgetItem"></Modal>
+      <Modal :showModal ="showModal" :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal)"></Modal>
     </div>
   </div>
   </draggable>
@@ -37,7 +37,20 @@
     },
     props: [
       'widgetItem'
-    ]
+    ],
+    methods:{
+      submit(showModal){
+        console.log("Submit")
+          this.showModal=false
+        return showModal
+      },
+      close(showModal){
+        console.log("close")
+        this.showModal= false
+        return showModal
+
+      }
+    }
   }
 </script>
 

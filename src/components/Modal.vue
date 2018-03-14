@@ -51,8 +51,8 @@
               </div>
               <br>
               <div></div>
-              <button type="submit">Submit</button>
-              <button>Cancel</button>
+           <button type="submit" @click="submit">Submit</button>
+              <button @click="close">Cancel</button>
           </div>
 
         </div>
@@ -92,8 +92,15 @@
           })
 
 
+      },
+      submit(){
+       this.$emit('submit')
+      },
+      close(){
+        this.$emit('close')
       }
     },
+
     components: {
       Bmodal,
       axios
