@@ -46,7 +46,7 @@
         return showModal
       },
       close(showModal){
-        console.log("close")
+        console.log("Cancel")
 
         this.showModal= false
         return showModal

@@ -80,9 +80,8 @@
       "icon": "http://www.pvhc.net/img130/cxbjkmnziliplxfojxdc.jpg"
     },
     {
-      "name" : "User",
+      "name": "User",
       "user": "asdf"
-
     }
   ],
   "users": [
@@ -316,5 +315,8 @@
         "bs": "target end-to-end models"
       }
     }
+  ],
+  "mails": [
+
   ]
 }

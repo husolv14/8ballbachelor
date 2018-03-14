@@ -8,58 +8,55 @@
             <div class="modal-header">
               <h1 class="modal-title">{{widgetItem.name}}</h1>
             </div>
-              <div class="modal-body">
-                <img class="icon" :src="widgetItem.icon"/>
+            <div class="modal-body">
+              <img class="icon" :src="widgetItem.icon"/>
 
-                <p>{{widgetItem.description}}</p>
-                <div v-show="widgetItem.standard">
+              <p>{{widgetItem.description}}</p>
+              <div v-show="widgetItem.standard">
 
-                  <!--<p>Mottaker</p>-->
-                  <!--<select class="select" id="to">-->
-                  <!--<option v-for="mail in widgetItem.mail">{{mail}}</option>-->
-                  <!--</select>-->
-                  <!--<br>-->
-                  <!--<p>Mail-Frekvens</p>-->
-                  <!--<select id="freq">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                  </select>
-                  <br><br>
-                  ​-->
-                  <textarea rows="10" cols="70">{{widgetItem.standard}}</textarea>
-                  <br><br>
-                </div>
-              </div>
-              <div v-show="widgetItem.mail">
-                <p>Avsender</p>
-                <select class="select" id="from">
-                  <option v-for="mail in widgetItem.mail">{{mail}}</option>
+                <!--<p>Mottaker</p>-->
+                <!--<select class="select" id="to">-->
+                <!--<option v-for="mail in widgetItem.mail">{{mail}}</option>-->
+                <!--</select>-->
+                <!--<br>-->
+                <!--<p>Mail-Frekvens</p>-->
+                <!--<select id="freq">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
                 </select>
-                <br>
+                <br><br>
+                ​-->
+                <textarea rows="10" cols="70" v-model="message = widgetItem.standard"></textarea>
+                <p></p>
+                <br><br>
               </div>
-              <div v-show="widgetItem.user">
-                <input type="text"/>
-                <div>{{query('id=2')}}</div>
-                <textarea rows="20" cols="70">se her: {{userData}}</textarea>
-
-
-              </div>
+            </div>
+            <div v-show="widgetItem.mail">
+              <p>Avsender</p>
+              <select class="select" id="from">
+                <option v-for="mail in widgetItem.mail">{{mail}}</option>
+              </select>
               <br>
-              <div></div>
-           <button type="submit" @click="submit">Submit</button>
-              <button @click="close">Cancel</button>
+            </div>
+
+            <div v-show="widgetItem.user">
+              <input type="text"/>
+              <div>{{query('id=2')}}</div>
+              <textarea rows="20" cols="70">se her: {{userData}}</textarea>
+
+            </div>
+            <br>
+            <div></div>
+            <button type="submit" @click="submit(message)">Submit</button>
+            <button @click="close">Cancel</button>
           </div>
-
         </div>
-
-
       </div>
-
     </div>
   </transition>
 
@@ -75,11 +72,12 @@
     data() {
       return {
         showModal: true,
-        userData: []
+        userData: [],
+        message:"",
 
       }
     },
-    methods:{
+    methods: {
       query(data) {
         axios.get(`http://localhost:3000/users?` + data)
           .then(response => {
@@ -93,11 +91,21 @@
 
 
       },
-      submit(){
-       this.$emit('submit')
+      submit(message) {
+        this.$emit('submit')
+        axios.post(`http://localhost:3000/mails`, {
+          message
+        })
+          .then(response => {})
+          .catch(e => {
+            this.errors.push(e)
+          })
       },
-      close(){
+      close() {
         this.$emit('close')
+      },
+      post(data, path){
+
       }
     },
 

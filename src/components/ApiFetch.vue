@@ -4,7 +4,6 @@
       <Widget :widgetItem = "item"></Widget>
     </div>
 
-
   </div>
 </template>
 
