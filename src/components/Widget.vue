@@ -7,7 +7,7 @@
     {{widgetItem.name}}
     <br><img class="icon" :src="widgetItem.icon"/>
     <div v-if="showModal">
-      <Modal :showModal ="showModal" :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal)"></Modal>
+      <Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>
     </div>
   </div>
   </draggable>
@@ -39,13 +39,15 @@
       'widgetItem'
     ],
     methods:{
-      submit(showModal){
+      submit(showModal,widgetItem){
         console.log("Submit")
+        console.log(widgetItem.description)
           this.showModal=false
         return showModal
       },
       close(showModal){
         console.log("close")
+
         this.showModal= false
         return showModal
 

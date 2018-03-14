@@ -108,7 +108,6 @@
     props: [
       "myProp",
       'widgetItem',
-      "showModal",
       "users"
     ]
   }

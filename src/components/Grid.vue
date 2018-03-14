@@ -4,7 +4,7 @@
       <div class="titleText">8BallBachelor</div>
     </div>
     <ul>
-      <draggable :list="list" class="drag" :options="{animation:150,group:'grid',clone:clone}">
+      <draggable class="drag" :options="{animation:150,group:'grid'}">
       </draggable>
     </ul>
   </div>
@@ -13,6 +13,7 @@
 <script>
   import draggable from 'vuedraggable'
   import Modal from "./Modal";
+
 
   export default {
     name: 'grid',
