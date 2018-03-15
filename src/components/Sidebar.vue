@@ -1,6 +1,7 @@
 <template>
   <div class="Sidebar">
     <!--<widget/>-->
+    <div></div>
     <api-fetch/>
   </div>
 </template>
