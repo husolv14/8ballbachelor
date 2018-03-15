@@ -9,6 +9,7 @@
   import MainWrapper from './components/MainWrapper'
   import TopBar from './components/TopBar'
 
+
   export default {
     name: 'App',
     components: {

@@ -1,20 +1,20 @@
 <template>
   <div class="Sidebar">
-    <!--<widget/>-->
+    <widget/>
     <div></div>
-    <api-fetch/>
+    <render-widget/>
   </div>
 </template>
 
 <script>
- // import Widget from '../components/Widget.vue'
-  import ApiFetch from './ApiFetch'
+ import Widget from '../components/Widget.vue'
+  import RenderWidget from './RenderWidget'
 
   export default {
     name: 'Sidebar',
     components: {
-      //Widget,
-      ApiFetch
+      Widget,
+      RenderWidget
     }
   }
 
@@ -29,5 +29,6 @@
     position: relative;
     float: left;
     overflow-y: scroll;
+    min-width: 20%;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="item in widgetData">
-      <Widget :widgetItem = "item"></Widget>
+    <div v-for="item in widgetList">
+      <Widget>{{createWidget(item)}}</Widget>
     </div>
 
   </div>
@@ -10,6 +10,8 @@
 <script>
   import axios from 'axios'
   import Widget from './Widget'
+  import WidgetDataMixin from './mixins/WidgetDataMixin'
+
 
   export default {
     components: {Widget},

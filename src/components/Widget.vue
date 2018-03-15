@@ -3,15 +3,17 @@
   <div>
   <draggable
     :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list">
-  <div draggable="false" @dblclick="showModal=true" class="item">
-    {{widgetItem.name}}
-    <br><img class="icon" :src="widgetItem.icon"/>
-    <div v-if="showModal">
-      <Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>
-    </div>
-  </div>
-  </draggable>
+  <!--<div draggable="false" @dblclick="showModal=true" class="item">-->
+    <!--{{widgetItem.name}}-->
+    <!--<br><img class="icon" :src="widgetItem.icon"/>-->
+    <!--<div v-if="showModal">-->
+      <!--<Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>-->
+    <!--</div>-->
+  <!--</div>-->
 
+
+  </draggable>
+    <p>her : </p>
   </div>
 </template>
 
@@ -19,6 +21,7 @@
   import draggable from 'vuedraggable'
   import ListGenerator from './ListGenerator'
   import Modal from './Modal'
+  import WidgetDataMixin from './mixins/WidgetDataMixin'
 
   export default {
     name: "widget",
