@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal">
+  <transition v-if="showModal" name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <span aria-hidden="true"></span>
@@ -31,7 +31,7 @@
                 </select>
                 <br><br>
                 ​-->
-                <textarea rows="10" cols="70" v-model="message = widgetItem.standard"></textarea>
+                <textarea rows="10" cols="80" v-model="message = widgetItem.standard"></textarea>
                 <p></p>
                 <br><br>
               </div>
@@ -52,8 +52,8 @@
             </div>
             <br>
             <div></div>
-            <button type="submit" @click="submit(message)">Submit</button>
-            <button @click="close">Cancel</button>
+            <button class="button-submit" type="submit" @click="submit(message)">Submit</button>
+            <button class="button-close" @click="close">Cancel</button>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
           .then(response => {
             // JSON responses are automatically parsed.
             this.userData = response.data
-            return this.userData.name
+            return this.userData
           })
           .catch(e => {
             this.errors.push(e)
@@ -129,10 +129,10 @@
     top: 10%;
     background-color: rgb(255, 255, 255);
     display: table;
-    transition: opacity .3s ease;
     color: black;
     min-width: 40%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
   }
 
   .modal-wrapper {
@@ -171,6 +171,14 @@
     height: 40px;
     width: 100px;
     margin-left: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: box-shadow 0.1s ease-in-out;
+    border:none;
+    color: white;
+  }
+  button:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
   }
 
   .icon {
@@ -179,5 +187,22 @@
 
   .select {
     font-size: 20px;
+  }
+  .modal-enter-active {
+    transition: all .5s ease;
+  }
+  .modal-leave-active {
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .modal-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  .button-submit{
+    background-color: mediumseagreen;
+  }
+  .button-close{
+    background-color: indianred;
   }
 </style>

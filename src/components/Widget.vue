@@ -1,17 +1,16 @@
 <template>
   <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
-  <div>
+  <div draggable="false">
   <draggable
-    :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list">
+    :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >
   <div draggable="false" @dblclick="showModal=true" class="item">
     {{widgetItem.name}}
     <br><img class="icon" :src="widgetItem.icon"/>
+  </div>
+  </draggable>
     <div v-if="showModal">
       <Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>
     </div>
-  </div>
-  </draggable>
-
   </div>
 </template>
 
@@ -47,7 +46,6 @@
       },
       close(showModal){
         console.log("Cancel")
-
         this.showModal= false
         return showModal
 
@@ -64,10 +62,8 @@
     margin-bottom: 2%;
   }
   .item {
-    /*border: 2px solid black;*/
     height: 156.55px;
     text-align: center;
-    /*margin: 2px;*/
     min-width: 233.78px;
     margin: 20px 10px 10px 10px;
     background-color: #f0f3f5;
@@ -78,15 +74,10 @@
   }
   .item:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    cursor: grab;
   }
-  .list {
-    list-style: none;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    padding: 0;
-    display: inline;
-    animation: 400ms;
-    min-height: 100%;
+  .item:active{
+    cursor: grabbing;
   }
+  .item:active:hover {cursor: grabbing}
 </style>
