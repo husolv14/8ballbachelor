@@ -81,7 +81,8 @@
     },
     {
       "name": "User",
-      "user": "asdf"
+      "user": "asdf",
+      "icon": "http://iconshow.me/media/images/ui/ios7-icons/png/256/contact-outline.png"
     }
   ],
   "users": [
@@ -317,6 +318,20 @@
     }
   ],
   "mails": [
-
+    {
+      "message": "Vi er glad i å snakke med mennesker som deg. Takk for at du velger 8BallBachelor\n\n\n\n\n\n\n\nFra 8BallBachelor.",
+      "id": 1
+    },
+    {
+      "message": "Vi er glad i å snakke med mennesker som deg. Takk for at du velger 8BallBachelor\n\n\n\n\n\n\n\nFra 8BallBachelor.",
+      "id": 2
+    },
+    {
+      "message": "Vi er glad i å snakke med mennesker som deg. Takk for at du velger 8BallBachelor\n\n\n\n\n\n\n\nFra 8BallBachelor.",
+      "id": 3
+    },
+    {
+      "id": 4
+    }
   ]
 }
