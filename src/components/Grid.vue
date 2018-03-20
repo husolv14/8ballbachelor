@@ -1,3 +1,5 @@
+<!-- Der widgets plasseres -->
+
 <template>
   <div>
     <div class="titleBar">
