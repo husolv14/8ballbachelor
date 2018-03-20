@@ -8,6 +8,9 @@ Vue.config.productionTip = false
 Vue.component(GlobalEvents)
 
 /* eslint-disable no-new */
+
+var bus = new Vue()
+
 new Vue({
   el: '#app',
   components: { App },
