@@ -1,13 +1,14 @@
 <template>
   <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
-  <div draggable="false">
-  <draggable
-    :options="{animation:150,group:{name: 'grid', pull: 'clone', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >
+  <div draggable="false" >
+
+  <!--<draggable-->
+    <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
   <div draggable="false" @dblclick="showModal=true" class="item">
     {{widgetItem.name}}
-    <br><img class="icon" :src="widgetItem.icon"/>
+    <!--<br><img class="icon" :src="widgetItem.icon"/>-->
   </div>
-  </draggable>
+  <!--</draggable>-->
     <div v-if="showModal">
       <Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>
     </div>
@@ -62,7 +63,7 @@
     margin-bottom: 2%;
   }
   .item {
-    height: 156.55px;
+    height: 35.55px;
     text-align: center;
     min-width: 233.78px;
     margin: 20px 10px 10px 10px;
