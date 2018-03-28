@@ -9,9 +9,9 @@
     <!--<br><img class="icon" :src="widgetItem.icon"/>-->
   </div>
   <!--</draggable>-->
-    <div v-if="showModal">
-      <Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>
-    </div>
+    <!--<div v-if="showModal">-->
+      <!--<Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>-->
+    <!--</div>-->
   </div>
 </template>
 

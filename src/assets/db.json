@@ -3,11 +3,12 @@
     {
       "name": "Legg til ny ansatt",
       "dbName": "Ansatt",
-      "id": 1
+      "id": 1,
+      "category":"Employee"
     },
     {
-      "name": "Test",
-      "dbName": "test",
+      "name": "asd",
+      "dbName": "asda",
       "id": 2
     }
   ],

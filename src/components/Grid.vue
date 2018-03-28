@@ -8,6 +8,7 @@
     <ul>
       <draggable class="drag" :options="{animation:150,group:'grid'}">
         <!--<Widget :widgetItem = "toolData"></Widget>-->
+        <h1 @EMITTED="doThis"></h1>
       </draggable>
 
     </ul>
@@ -57,6 +58,9 @@
     methods: {
       placeOnGrid(value) {
         alert(value)
+      },
+      doThis(message){
+        console.log("FRA SIDEBAR : "+ message)
       },
       getTool() {
         alert("yo")

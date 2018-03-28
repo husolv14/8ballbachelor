@@ -1,8 +1,8 @@
 <template>
   <div class="Sidebar">
-    <el-button icon="el-icon-refresh" @click="updateList"></el-button>
+    <el-button icon="el-icon-refresh" @click="update"></el-button>
     <!--<api-fetch v-model="WidgetData"></api-fetch>-->
-    <div v-model="widgetData" v-for="item in widgetData">
+    <div @dblclick="" v-model="widgetData" v-for="item in WidgetData">
       <Widget :widgetItem="item"></Widget>
     </div>
     <div>
@@ -21,6 +21,11 @@
           <el-input v-model="formData.name"></el-input>
           Database navn
           <el-input v-model="formData.dbName"></el-input>
+          <!--<el-select>-->
+            <!--<el-option>-->
+
+            <!--</el-option>-->
+          <!--</el-select>-->
           <br/>
         </el-form>
       </el-dialog>
@@ -32,7 +37,6 @@
   // import Widget from '../components/Widget.vue'
   import ApiFetch from './ApiFetch'
   import Modal from './Modal'
-  import axios from 'axios'
   import Widget from './Widget'
 
   export default {
@@ -54,47 +58,20 @@
       Modal
     },
     created(){
-      axios.get(`http://localhost:3000/widgetData`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.widgetData = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
     },
     methods: {
       close() {
         return this.showModal = false
       },
       postWidget(formData) {
-        axios.post(`http://localhost:3000/WidgetData`, {
-            name : formData.name,
-            dbName: formData.dbName
-          }
-        )
-          .then(response => {
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-        this.showModal=false
-        this.$emit('UPDATE')
+        this.$emit("addNewWidget", formData)
+        this.close()
       },
-      updateList(){
-        console.log("UPDATING LIST")
-        axios.get(`http://localhost:3000/widgetData`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.widgetData = response.data
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
+      update(){
+        this.$emit("updateList")
       },
-      props:['WidgetData']
-
-    }
+    },
+    props:['WidgetData']
   }
 
 </script>
