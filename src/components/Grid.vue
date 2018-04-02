@@ -7,7 +7,7 @@
     </div>
     <ul>
       <draggable class="drag" :options="{animation:150,group:'grid'}">
-        <Widget v-for="item in ToolData":widgetItem = "ToolData"></Widget>
+        <Widget v-for="item in ToolData":widgetItem = "item"></Widget>
       </draggable>
 
     </ul>
