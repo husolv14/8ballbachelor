@@ -31,7 +31,7 @@
     methods:{
         updateGrid(){
             console.log("Updating Grid")
-            axios.get(`http://localhost:3000/widgetData`)
+            axios.get(`http://localhost:3000/ToolData`)
                 .then(response => {
                     // JSON responses are automatically parsed.
                     this.ToolData = response.data

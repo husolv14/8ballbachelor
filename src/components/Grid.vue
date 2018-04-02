@@ -23,7 +23,7 @@
         </span>
 
       <el-select v-model="value" placeholder="Velg verktøy">
-        <el-option v-for="item in toolData" :key="item.name" :label="item.name" :value="item.name">{{item.name}}
+        <el-option v-for="item in ToolData" :key="item.name" :label="item.name" :value="item.name">{{item.name}}
         </el-option>
       </el-select>
     </el-dialog>
@@ -45,7 +45,6 @@
         showModal: false,
         name: "Legg til flere verktøy",
         value: "",
-        ToolData: {}
       }
     },
     components: {
@@ -62,7 +61,7 @@
         alert("yo")
         axios.get(`http://localhost:3000/tool`)
           .then(response => {
-            this.toolData = response.data
+            this.ToolData = response.data
           })
           .catch(e => {
             this.errors.push(e)
