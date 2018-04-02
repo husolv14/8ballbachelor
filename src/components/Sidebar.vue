@@ -2,8 +2,8 @@
   <div class="Sidebar">
     <el-button icon="el-icon-refresh" @click="update"></el-button>
     <!--<api-fetch v-model="WidgetData"></api-fetch>-->
-    <div @dblclick="" v-model="widgetData" v-for="item in WidgetData">
-      <Widget :widgetItem="item"></Widget>
+    <div  v-model="widgetData" v-for="item in WidgetData">
+      <Widget @updateGrid="doThis" :widgetItem="item"></Widget>
     </div>
     <div>
       <el-button @click="showModal = true" type="primary">Legg til flere widgets</el-button>
@@ -70,6 +70,9 @@
       update(){
         this.$emit("updateList")
       },
+        doThis(){
+          this.$emit("sidebar-UpdateGrid")
+        }
     },
     props:['WidgetData']
   }

@@ -7,8 +7,7 @@
     </div>
     <ul>
       <draggable class="drag" :options="{animation:150,group:'grid'}">
-        <!--<Widget :widgetItem = "toolData"></Widget>-->
-        <h1 @EMITTED="doThis"></h1>
+        <Widget v-for="item in ToolData":widgetItem = "ToolData"></Widget>
       </draggable>
 
     </ul>
@@ -46,7 +45,7 @@
         showModal: false,
         name: "Legg til flere verktøy",
         value: "",
-        toolData: {}
+        ToolData: {}
       }
     },
     components: {
@@ -58,9 +57,6 @@
     methods: {
       placeOnGrid(value) {
         alert(value)
-      },
-      doThis(message){
-        console.log("FRA SIDEBAR : "+ message)
       },
       getTool() {
         alert("yo")
@@ -76,6 +72,9 @@
 
       }
     },
+      props:[
+          'ToolData'
+      ],
     created() {
     }
 

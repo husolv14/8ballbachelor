@@ -1,10 +1,21 @@
 {
+  "toolData": [
+    {
+      "id": 1,
+      "name": "tool1"
+    },
+    {
+      "id":2,
+      "name": "tool2"
+    }
+  ],
+
   "widgetData": [
     {
       "name": "Legg til ny ansatt",
       "dbName": "Ansatt",
       "id": 1,
-      "category":"Employee"
+      "category": "Employee"
     },
     {
       "name": "asd",

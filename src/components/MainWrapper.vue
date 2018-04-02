@@ -1,8 +1,8 @@
 <template>
   <div class="mainWrapper" >
-    <sidebar @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
+    <sidebar @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
     </sidebar>
-    <grid/>
+    <grid :ToolData="ToolData"/>
     <!--modal/-->
   </div>
 
@@ -18,7 +18,8 @@
     name: 'main-wrapper',
     data(){
       return{
-        WidgetData:{}
+        WidgetData:{},
+        ToolData:{}
       }
     },
     components: {
@@ -28,6 +29,18 @@
       //Modal
     },
     methods:{
+        updateGrid(){
+            console.log("Updating Grid")
+            axios.get(`http://localhost:3000/widgetData`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.ToolData = response.data
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+        },
       addNewWidget(formData){
         axios.post(`http://localhost:3000/WidgetData`, {
             name : formData.name,
