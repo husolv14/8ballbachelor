@@ -4,7 +4,7 @@
 
         <!--<draggable-->
         <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-        <div draggable="false" @dblclick="upDateGrid()" class="item">
+        <div draggable="false" @dblclick="upDateGrid(widgetItem.id)" class="item">
             {{widgetItem.name}}
             <!--<br><img class="icon" :src="widgetItem.icon"/>-->
         </div>
@@ -45,8 +45,8 @@
                 this.showModal = false
                 return showModal
             },
-            upDateGrid() {
-                this.$emit("updateGrid")
+            upDateGrid(id) {
+                this.$emit("updateGrid",id)
             },
             close(showModal) {
                 console.log("Cancel")

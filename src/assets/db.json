@@ -2,11 +2,19 @@
   "toolData": [
     {
       "id": 1,
-      "name": "tool1"
+      "name": "Skjema"
+    },
+    {
+      "id":1,
+      "name": "Mail"
+    },
+    {
+      "id": 2,
+      "name": "Annet"
     },
     {
       "id":2,
-      "name": "tool2"
+      "name": "Osv"
     }
   ],
 

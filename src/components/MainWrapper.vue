@@ -1,8 +1,8 @@
 <template>
   <div class="mainWrapper" >
-    <sidebar @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
+    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
     </sidebar>
-    <grid :ToolData="ToolData"/>
+    <grid :loading="loadingGrid" :ToolData="ToolData"/>
     <!--modal/-->
   </div>
 
@@ -19,7 +19,9 @@
     data(){
       return{
         WidgetData:{},
-        ToolData:{}
+        ToolData:{},
+          loadingGrid: false,
+          loadingSidebar:false,
       }
     },
     components: {
@@ -29,13 +31,15 @@
       //Modal
     },
     methods:{
-        updateGrid(){
+        updateGrid(id){
+            this.loadingGrid = true
             console.log("Updating Grid")
-            axios.get(`http://localhost:3000/ToolData`)
+            axios.get(`http://localhost:3000/ToolData?id=` + id)
                 .then(response => {
                     // JSON responses are automatically parsed.
                     this.ToolData = response.data
                     console.log(response.data)
+                    this.loadingGrid = false
                 })
                 .catch(e => {
                     this.errors.push(e)
@@ -56,11 +60,13 @@
         this.$emit('UPDATE')
       },
       updateList(){
+            this.loadingSidebar = true
         console.log("UPDATING LIST")
         axios.get(`http://localhost:3000/widgetData`)
           .then(response => {
             // JSON responses are automatically parsed.
             this.WidgetData = response.data
+              this.loadingSidebar = false
           })
           .catch(e => {
             this.errors.push(e)
@@ -68,10 +74,12 @@
       },
     },
     created(){
+      this.loadingSidebar = true
       axios.get(`http://localhost:3000/widgetData`)
         .then(response => {
           // JSON responses are automatically parsed.
           this.WidgetData = response.data
+            this.loadingSidebar = false
 
         })
         .catch(e => {

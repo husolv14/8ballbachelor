@@ -1,9 +1,9 @@
 <template>
-  <div class="Sidebar">
+  <div v-loading="loading" class="Sidebar">
     <el-button icon="el-icon-refresh" @click="update"></el-button>
     <!--<api-fetch v-model="WidgetData"></api-fetch>-->
     <div  v-model="widgetData" v-for="item in WidgetData">
-      <Widget @updateGrid="doThis" :widgetItem="item"></Widget>
+      <Widget @updateGrid="updateGrid" :widgetItem="item"></Widget>
     </div>
     <div>
       <el-button @click="showModal = true" type="primary">Legg til flere widgets</el-button>
@@ -43,13 +43,15 @@
     name: 'Sidebar',
     data() {
       return {
+          id:"",
         showModal: false,
         name: "Legg til nytt løp",
         widgetData:{},
         formData: {
           name: "",
           dbName:""
-        }
+        },
+          loading:false
       }
     },
     components: {
@@ -70,8 +72,9 @@
       update(){
         this.$emit("updateList")
       },
-        doThis(){
-          this.$emit("sidebar-UpdateGrid")
+        updateGrid(id){
+          console.log("DETTE ER id " + id)
+          this.$emit("sidebar-UpdateGrid", id)
         }
     },
     props:['WidgetData']
