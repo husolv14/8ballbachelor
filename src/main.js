@@ -6,10 +6,18 @@ import GlobalEvents from 'vue-global-events'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import elementLocale from "element-ui/lib/locale/lang/en"
-
+import AsyncComputed from 'vue-async-computed'
+import asyncData from 'vue-async-properties'
+import vuex from 'vuex'
+import VueFormGenerator from "vue-form-generator"
+Vue.use(VueFormGenerator)
+Vue.use(vuex)
+Vue.use(AsyncComputed)
+Vue.use(asyncData)
 Vue.config.productionTip = false
 Vue.component(GlobalEvents)
 Vue.use(ElementUI, { locale: elementLocale })
+
 
 /* eslint-disable no-new */
 
@@ -17,11 +25,20 @@ var bus = new Vue()
 
 new Vue({
   el: '#app',
+  data(){
+    return{
+      WidgetData: []
+    }
+
+  },
   components: { App },
   template: '<App/>',
   methods:{
     test(){
       this.$message('This is a message.')
+    },
+    doThis(){
+      alert('yo')
     }
   }
 })

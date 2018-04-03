@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <top-bar></top-bar>
+    <!--<top-bar></top-bar>-->
     <main-wrapper/>
     <!--<button @click="showWhich ='DynamicOne'">Show one</button>-->
     <!--<button @click="showWhich ='DynamicTwo'">Show two</button>-->
@@ -16,13 +16,13 @@
     <!--v-model="formData[field.name]"-->
     <!--v-bind="field">-->
     <!--</component>-->
-    <form-generator :schema="schema"
-                    v-model="formData">
-    </form-generator>
-    <p>
-      Hello {{formData.title}} {{formData.firstName}} {{formData.lastName}},
-      You are {{formData.age}} years old
-    </p>
+    <!--<form-generator :schema="schema"-->
+                    <!--v-model="formData">-->
+    <!--</form-generator>-->
+    <!--<p>-->
+      <!--Hello {{formData.title}} {{formData.firstName}} {{formData.lastName}},-->
+      <!--You are {{formData.age}} years old-->
+    <!--</p>-->
 
   </div>
 </template>
@@ -108,7 +108,9 @@
     -moz-osx-font-smoothing : grayscale;
     text-align              : center;
     color                   : #2c3e50;
-    margin-top              : 60px;
+  }
+  body{
+    background-color: #e4e5e6;
   }
 
 </style>
