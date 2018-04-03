@@ -133,5 +133,11 @@
   .newTools{
     bottom:0;
   }
+  .sortable-ghost{
+    opacity:1;
+  }
+  .tryThis{
+    background-color:red;
+  }
 
 </style>

@@ -8,21 +8,33 @@
           {
             "type": "Input",
             "inputType": "text",
-            "label": "ID",
-            "model": "id",
-            "readonly": false,
-            "disabled": false
+            "label": "Navn på skjema",
+            "model": "id"
           },
           {
-            "type": "select",
-            "label": "Skills",
-            "model": "skills",
-            "values": [
-              "Javascript",
-              "VueJS",
-              "CSS3",
-              "HTML5"
-            ]
+            "type": "Checkbox",
+            "label": "Input",
+            "model": "skills"
+          },
+          {
+            "type": "Input",
+            "inputType": "text",
+            "label": "Navn på input",
+            "model": "test",
+            "disabled": true,
+            "class":"tryThis"
+          },
+          {
+            "type": "Checkbox",
+            "label": "TextArea",
+            "model": "skills"
+          },
+          {
+            "type": "Input",
+            "inputType": "text",
+            "label": "Navn på textArea",
+            "model": "test",
+            "disabled": true
           }
         ]
       }
@@ -30,6 +42,18 @@
     {
       "id": 1,
       "name": "Mail"
+    },
+    {
+      "id": 1,
+      "name": "Vent"
+    },
+    {
+      "id": 1,
+      "name": "Gjenta"
+    },
+    {
+      "id": 1,
+      "name": "Alarm"
     },
     {
       "id": 2,
@@ -44,11 +68,10 @@
     {
       "name": "Legg til ny ansatt",
       "dbName": "Ansatt",
-      "id": 1,
-      "category": "Employee"
+      "id": 1
     },
     {
-      "name": "Gjør noe annet",
+      "name": "Endre mailfrekvens",
       "dbName": "asda",
       "id": 2
     }

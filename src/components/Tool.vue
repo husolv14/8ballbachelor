@@ -5,11 +5,11 @@
     <!--<draggable-->
     <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
     <div draggable="false" @dblclick="showModal=true" class="item">
-      {{widgetItem.name}}
+      <p class="thisText">{{widgetItem.name}}</p>
       <el-dialog :title="widgetItem.name"
                  :visible.sync="showModal"
                  width="40%">
-        <vue-form-generator :schema="widgetItem.schema"></vue-form-generator>
+        <!--<vue-form-generator :schema="widgetItem.schema"></vue-form-generator>-->
       </el-dialog>
 
     </div>
@@ -95,5 +95,8 @@
 
   .item:active:hover {
     cursor: grabbing
+  }
+  .thisText{
+    padding-top: 10px;
   }
 </style>
