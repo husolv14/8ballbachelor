@@ -71,7 +71,7 @@
           .catch(e => {
             this.errors.push(e)
           })
-      },
+      }
     },
     created(){
       this.loadingSidebar = true
@@ -88,13 +88,15 @@
     },
 
 
+
   }
 </script>
 
 <style scoped>
   .mainWrapper {
-    height: 53em;
+    height: 60em;
     background-color: #f0f3f5;
+    width: auto;
   }
 
   h3 {

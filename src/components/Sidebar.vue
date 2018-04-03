@@ -1,12 +1,12 @@
 <template>
   <div v-loading="loading" class="Sidebar">
-    <el-button icon="el-icon-refresh" @click="update"></el-button>
+    <h1>Løp</h1>
     <!--<api-fetch v-model="WidgetData"></api-fetch>-->
     <div  v-model="widgetData" v-for="item in WidgetData">
       <Widget @updateGrid="updateGrid" :widgetItem="item"></Widget>
     </div>
     <div>
-      <el-button @click="showModal = true" type="primary">Legg til flere widgets</el-button>
+      <el-button @click="showModal = true" type="success">Legg til flere widgets <i class="el-icon-plus el-icon-right"></i></el-button>
       <el-dialog
         :title="name"
         :visible.sync="showModal"
@@ -14,7 +14,7 @@
       >
         <span slot="footer" class="dialog-footer">
         <el-button @click="close">Avbryt</el-button>
-        <el-button type="primary" @click="postWidget(formData)">Lagre</el-button>
+        <el-button type="primary" @click="postWidget(formData); update">Legg Til</el-button>
         </span>
         <el-form>
           Navn
@@ -30,6 +30,7 @@
         </el-form>
       </el-dialog>
     </div>
+    <el-button class="refresh" type="info" icon="el-icon-refresh" @click="update" circle></el-button>
   </div>
 </template>
 
@@ -86,11 +87,15 @@
   .Sidebar {
     width: auto;
     min-width: 270.77px;
-    background-color: #a4b7c1;
+    background-color: #29363d;
     height: 100%;
     color: white;
     position: relative;
     float: left;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
+  }
+  .refresh{
+    margin-top: 10%;
+    background-color: #29363d ;
   }
 </style>

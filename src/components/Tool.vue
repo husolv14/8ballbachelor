@@ -8,13 +8,11 @@
       {{widgetItem.name}}
       <el-dialog :title="widgetItem.name"
                  :visible.sync="showModal"
-                 width="40%"></el-dialog>
-      <!--<br><img class="icon" :src="widgetItem.icon"/>-->
+                 width="40%">
+        <vue-form-generator :schema="widgetItem.schema"></vue-form-generator>
+      </el-dialog>
+
     </div>
-    <!--</draggable>-->
-    <!--<div v-if="showModal">-->
-    <!--<Modal :widgetItem="widgetItem" @close="close(showModal)" @submit="submit(showModal,widgetItem)"></Modal>-->
-    <!--</div>-->
   </div>
 </template>
 
@@ -56,6 +54,10 @@
         this.showModal = false
         return showModal
 
+      },
+      destroyEmit(){
+        this.$emit('destroy')
+
       }
     }
   }
@@ -70,15 +72,16 @@
   }
 
   .item {
-    height: 35.55px;
+    height: 80.55px;
     text-align: center;
     min-width: 233.78px;
     margin: 20px 10px 10px 10px;
-    background-color: #f0f3f5;
+    background-color: #20a8d8;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: box-shadow 0.1s ease-in-out;
     font-size: larger;
-    color: black;
+    color: white;
+    float:left;
   }
 
   .item:hover {

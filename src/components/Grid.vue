@@ -1,16 +1,17 @@
 <template>
-    <div>
+    <div class="grid">
         <div class="titleBar">
-            <div class="titleText">8BallBachelor</div>
+            <div class="titleText">Drag & Drop</div>
         </div>
-        <ul>
-            <draggable v-loading="loading" class="drag" :options="{animation:150,group:'grid'}">
-                <Tool v-for="item in ToolData" :widgetItem="item">
+        <!--<ul>-->
+            <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
+
+              <Tool @destroy="destroyTool()" v-for="item in ToolData" :widgetItem="item">
                 </Tool>
             </draggable>
 
-        </ul>
-        <el-button type="success" @click="getTool(); showModal=true">Legg til nye verktøy</el-button>
+        <!--</ul>-->
+
         <el-dialog
                 :title="name"
                 :visible.sync="showModal"
@@ -22,10 +23,11 @@
         </span>
 
             <el-select v-model="value" placeholder="Velg verktøy">
-                <el-option v-for="item in ToolData" :key="item.name" :label="item.name" :value="item.name">{{item.name}}
+                <el-option v-for="item in ToolList" :key="item.name" :label="item.name" :value="item.name">{{item.name}}
                 </el-option>
             </el-select>
         </el-dialog>
+      <el-button class="newTools" type="success" @click="getTool(); showModal=true">Legg til nye verktøy</el-button>
     </div>
 </template>
 
@@ -45,6 +47,7 @@
                 showModal: false,
                 name: "Legg til flere verktøy",
                 value: "",
+              ToolList:{}
 
             }
         },
@@ -60,18 +63,18 @@
                 alert(value)
             },
             getTool() {
-                alert("yo")
-                axios.get(`http://localhost:3000/tool`)
+                axios.get(`http://localhost:3000/tooldata`)
                     .then(response => {
-                        this.ToolData = response.data
+                        this.ToolList = response.data
                     })
                     .catch(e => {
                         console.log(e)
                     })
-                // console.log("we got there")
-                // console.log(Vue.http.get('localhost:3000/tool').then(this.response))
-
             },
+          destroyTool(){
+              console.log("DESTROY")
+            this.$destroy()
+          }
         },
         props: [
             'ToolData','loading'
@@ -84,22 +87,29 @@
 </script>
 
 <style scoped>
+  .grid{
+    display: inline-block;
+    min-width: 80%;
+    width: auto;
+    /*overflow:hidden;*/
+    left: 0;
+  }
     li {
         opacity: 1;
     }
 
     .drag {
         width: auto;
-        float: left;
         list-style: none;
-        display: inline-flex;
         min-height: 225px;
         background-color: #FFF;
         margin-top: 20px;
         margin-left: 10px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-        overflow-x: scroll;
-        min-width: 80%;
+        /*overflow-x: scroll;*/
+        min-width: 100%;
+
+
     }
 
     h3 {
@@ -107,8 +117,9 @@
     }
 
     .titleBar {
-        background-color: white;
+        background-color: #f0f3f5;
         height: 60px;
+      width: 100%;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     }
 
@@ -116,8 +127,11 @@
         text-align: left;
         padding-top: 21px;
         font-size: 20px;
-        margin-left: 15%;
         font-weight: bold;
+      margin-left: 1%;
     }
+  .newTools{
+    bottom:0;
+  }
 
 </style>

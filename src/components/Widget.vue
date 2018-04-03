@@ -70,24 +70,25 @@
         height: 35.55px;
         text-align: center;
         min-width: 233.78px;
-        margin: 20px 10px 10px 10px;
-        background-color: #f0f3f5;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        margin: 0px 10px 10px 10px;
+        /*background-color: #000000;*/
         transition: box-shadow 0.1s ease-in-out;
         font-size: larger;
-        color: black;
+        color: white;
     }
 
     .item:hover {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        cursor: grab;
+      cursor:pointer;
+      background-color:#20a8d8;
+      transition:0.1s ease;
     }
 
-    .item:active {
-        cursor: grabbing;
+    .item:target {
     }
 
     .item:active:hover {
-        cursor: grabbing
     }
+  .item:active{
+
+  }
 </style>

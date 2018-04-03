@@ -9,6 +9,8 @@ import elementLocale from "element-ui/lib/locale/lang/en"
 import AsyncComputed from 'vue-async-computed'
 import asyncData from 'vue-async-properties'
 import vuex from 'vuex'
+import VueFormGenerator from "vue-form-generator"
+Vue.use(VueFormGenerator)
 Vue.use(vuex)
 Vue.use(AsyncComputed)
 Vue.use(asyncData)

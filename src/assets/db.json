@@ -2,10 +2,33 @@
   "toolData": [
     {
       "id": 1,
-      "name": "Skjema"
+      "name": "Skjema",
+      "schema": {
+        "fields": [
+          {
+            "type": "Input",
+            "inputType": "text",
+            "label": "ID",
+            "model": "id",
+            "readonly": false,
+            "disabled": false
+          },
+          {
+            "type": "select",
+            "label": "Skills",
+            "model": "skills",
+            "values": [
+              "Javascript",
+              "VueJS",
+              "CSS3",
+              "HTML5"
+            ]
+          }
+        ]
+      }
     },
     {
-      "id":1,
+      "id": 1,
       "name": "Mail"
     },
     {
@@ -13,30 +36,19 @@
       "name": "Annet"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "Osv"
     }
   ],
-
   "widgetData": [
     {
       "name": "Legg til ny ansatt",
       "dbName": "Ansatt",
       "id": 1,
-      "category": "Employee",
-      "toolData": [
-        {
-          "id": 1,
-          "name": "Skjema"
-        },
-        {
-          "id":2,
-          "name": "tool2"
-        }
-      ]
+      "category": "Employee"
     },
     {
-      "name": "asd",
+      "name": "Gjør noe annet",
       "dbName": "asda",
       "id": 2
     }
