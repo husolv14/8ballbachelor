@@ -44,7 +44,8 @@
           </el-form>
         </div>
         <div v-if="widgetItem.name ==='Vent'">
-            <el-select placeholder="Velg antall timer" v-model="value" label="Antall Timer">
+          <el-form>
+            <el-select placeholder="Velg antall timer" v-model="ventValue" label="Antall Timer">
               <el-option key="24" value="24">
                 24
               </el-option>
@@ -52,8 +53,42 @@
                 48
               </el-option>
             </el-select>
+          </el-form>
+          <el-button type="primary" @click="onSubmit">Create</el-button>
+          <el-button @click="showModal= false">Cancel</el-button>
         </div>
-        <div v-if="widgetItem.name==='Gjenta'"><h1>se der ja</h1></div>
+        <div v-if="widgetItem.name==='Gjenta'">
+          <el-form>
+          <el-select placeholder="Antall gjentagelser" v-model="gjentaValue" label="Antall Timer">
+            <el-option key="1" value="1">
+              1
+            </el-option>
+            <el-option key="2" value="2">
+              2
+            </el-option>
+            <el-option key="3" value="3">
+              3
+            </el-option>
+          </el-select>
+          </el-form>
+          <el-button type="primary" @click="onSubmit">Create</el-button>
+          <el-button @click="showModal= false">Cancel</el-button>
+        </div>
+        <div v-if="widgetItem.name==='Alarm'">
+          <el-form>
+          <el-select placeholder="Hvem får melding" v-model="gjentaValue" label="Antall Timer">
+            <el-option key="donald.duck@gmail.com" value="1">
+              donald.duck@gmail.com
+            </el-option>
+            <el-option key="DollyDuck@gmail.com" value="2">
+              dolly.duck@gmail.com
+            </el-option>
+          </el-select>
+          </el-form>
+          <el-button type="primary" @click="onSubmit">Create</el-button>
+          <el-button @click="showModal= false">Cancel</el-button>
+
+        </div>
       </el-dialog>
 
 
@@ -75,7 +110,8 @@
         // errors: [],
         showModal: false,
           form:{type:[]},
-          value: ""
+          ventValue: "",
+          gjentaValue:""
       }
     },
 
