@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <div class="titleBar">
-            <div class="titleText">Drag & Drop</div>
+            <div class="titleText">Legg til nye verktøy <el-button icon="el-icon-plus" type="info" circle @click="getTool(); showModal=true"></el-button></div>
         </div>
         <!--<ul>-->
             <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
@@ -27,7 +27,7 @@
             </el-select>
         </el-dialog>
 
-      <el-button class="newTools" type="success" @click="getTool(); showModal=true">Legg til nye verktøy</el-button>
+
     </div>
 </template>
 
@@ -130,7 +130,7 @@
 
     .titleText {
         text-align: left;
-        padding-top: 21px;
+        padding-top: 15px;
         font-size: 20px;
         font-weight: bold;
       margin-left: 1%;

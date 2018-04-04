@@ -42,7 +42,7 @@
     {
       "id": 1,
       "name": "Mail",
-      "mail":"test"
+      "mail": "test"
     },
     {
       "id": 1,
@@ -77,8 +77,8 @@
       "id": 2
     },
     {
-      "name": "Jeg vil lage et nytt løp",
-      "dbName": "Asd",
+      "name": "Nytt løp",
+      "dbName": "asd",
       "id": 3
     }
   ],

@@ -38,9 +38,18 @@
           <el-form>
             <el-form-item label="Mail som skal sendes">
               <el-input type="textarea" value="Hei Securitas! Kan dere ordne med nøkkelkort til disse ansatte?"></el-input>
-              <el-button type="primary" @click="onSubmit">Create</el-button>
-              <el-button @click="showModal= false">Cancel</el-button>
+              <el-select placeholder="Hvem får melding" v-model="gjentaValue" label="Antall Timer">
+                <el-option key="donald.duck@gmail.com" value="donald.duck@gmail.com">
+                  donald.duck@gmail.com
+                </el-option>
+                <el-option key="dollyduck@gmail.com" value="dollyduck@gmail.com">
+                  dolly.duck@gmail.com
+                </el-option>
+              </el-select>
             </el-form-item>
+            <el-button type="primary" @click="onSubmit">Create</el-button>
+            <el-button @click="showModal= false">Cancel</el-button>
+
           </el-form>
         </div>
         <div v-if="widgetItem.name ==='Vent'">
@@ -77,10 +86,10 @@
         <div v-if="widgetItem.name==='Alarm'">
           <el-form>
           <el-select placeholder="Hvem får melding" v-model="gjentaValue" label="Antall Timer">
-            <el-option key="donald.duck@gmail.com" value="1">
+            <el-option key="donald.duck@gmail.com" value="donald.duck@gmail.com">
               donald.duck@gmail.com
             </el-option>
-            <el-option key="DollyDuck@gmail.com" value="2">
+            <el-option key="dollyduck@gmail.com" value="dollyduck@gmail.com">
               dolly.duck@gmail.com
             </el-option>
           </el-select>
