@@ -10,6 +10,9 @@ import AsyncComputed from 'vue-async-computed'
 import asyncData from 'vue-async-properties'
 import vuex from 'vuex'
 import VueFormGenerator from "vue-form-generator"
+import Delay from 'vue-delay'
+import VueRouter from 'vue-router'
+import Routes from './routes.js';
 Vue.use(VueFormGenerator)
 Vue.use(vuex)
 Vue.use(AsyncComputed)
@@ -17,11 +20,17 @@ Vue.use(asyncData)
 Vue.config.productionTip = false
 Vue.component(GlobalEvents)
 Vue.use(ElementUI, { locale: elementLocale })
+Vue.use(VueRouter)
+
 
 
 /* eslint-disable no-new */
 
 var bus = new Vue()
+
+// const router = new VueRouter({
+//     routes: Routes
+// })
 
 new Vue({
   el: '#app',
@@ -31,7 +40,7 @@ new Vue({
     }
 
   },
-  components: { App },
+  components: { App, Delay },
   template: '<App/>',
   methods:{
     test(){

@@ -6,12 +6,11 @@
         <!--<ul>-->
             <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
 
-              <Tool @destroy="destroyTool()" v-for="item in ToolData" :widgetItem="item">
+              <Tool @create-form="createForm" @destroy="destroyTool()" v-for="item in ToolData" :widgetItem="item">
                 </Tool>
             </draggable>
 
         <!--</ul>-->
-
         <el-dialog
                 :title="name"
                 :visible.sync="showModal"
@@ -27,6 +26,7 @@
                 </el-option>
             </el-select>
         </el-dialog>
+
       <el-button class="newTools" type="success" @click="getTool(); showModal=true">Legg til nye verktøy</el-button>
     </div>
 </template>
@@ -38,6 +38,7 @@
     import Widget from "./Widget";
     import ToolFetch from './ToolFetch'
     import Tool from './Tool'
+    import Delay from 'vue-delay'
 
 
     export default {
@@ -56,7 +57,8 @@
             Modal,
             draggable,
             ToolFetch,
-            Tool
+            Tool,
+            Delay
         },
         methods: {
             placeOnGrid(value) {
@@ -74,7 +76,10 @@
           destroyTool(){
               console.log("DESTROY")
             this.$destroy()
-          }
+          },
+            createForm(form){
+                this.$emit('grid-create-form', form)
+            }
         },
         props: [
             'ToolData','loading'

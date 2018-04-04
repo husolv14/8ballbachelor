@@ -9,8 +9,54 @@
       <el-dialog :title="widgetItem.name"
                  :visible.sync="showModal"
                  width="40%">
+
         <!--<vue-form-generator :schema="widgetItem.schema"></vue-form-generator>-->
+        <div v-if="widgetItem.schema">
+          <el-form ref="form" :model="form" label-width="120px">
+            <el-form-item label="Navn på skjema">
+              <el-input v-model="form.name"></el-input>
+              <el-col class="line" :span="2"></el-col>
+              <el-col :span="11">
+              </el-col>
+            </el-form-item>
+            <el-form-item label="Skjema innhold">
+              <el-checkbox-group v-model="form.type">
+                <el-checkbox label="Input Field" name="type"></el-checkbox>
+                <el-checkbox label="Text Field" name="type"></el-checkbox>
+                <el-checkbox label="Date Picker" name="type"></el-checkbox>
+                <el-checkbox label="Rating" name="type"></el-checkbox>
+                <el-checkbox label="Upload File" name="type"></el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">Create</el-button>
+              <el-button @click="showModal= false">Cancel</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div v-if="widgetItem.name === 'Mail'">
+          <el-form>
+            <el-form-item label="Mail som skal sendes">
+              <el-input type="textarea" value="Hei Securitas! Kan dere ordne med nøkkelkort til disse ansatte?"></el-input>
+              <el-button type="primary" @click="onSubmit">Create</el-button>
+              <el-button @click="showModal= false">Cancel</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div v-if="widgetItem.name ==='Vent'">
+            <el-select placeholder="Velg antall timer" v-model="value" label="Antall Timer">
+              <el-option key="24" value="24">
+                24
+              </el-option>
+              <el-option key="48" value="48">
+                48
+              </el-option>
+            </el-select>
+        </div>
+        <div v-if="widgetItem.name==='Gjenta'"><h1>se der ja</h1></div>
       </el-dialog>
+
+
 
     </div>
   </div>
@@ -27,7 +73,9 @@
       return {
         // widgetData: [],
         // errors: [],
-        showModal: false
+        showModal: false,
+          form:{type:[]},
+          value: ""
       }
     },
 
@@ -57,7 +105,10 @@
       },
       destroyEmit(){
         this.$emit('destroy')
-
+      },
+      onSubmit(){
+          this.showModal = false
+          this.$emit('create-form', this.form)
       }
     }
   }

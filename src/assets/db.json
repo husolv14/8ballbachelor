@@ -22,7 +22,7 @@
             "label": "Navn på input",
             "model": "test",
             "disabled": true,
-            "class":"tryThis"
+            "class": "tryThis"
           },
           {
             "type": "Checkbox",
@@ -41,7 +41,8 @@
     },
     {
       "id": 1,
-      "name": "Mail"
+      "name": "Mail",
+      "mail":"test"
     },
     {
       "id": 1,
@@ -74,6 +75,11 @@
       "name": "Endre mailfrekvens",
       "dbName": "asda",
       "id": 2
+    },
+    {
+      "name": "Jeg vil lage et nytt løp",
+      "dbName": "Asd",
+      "id": 3
     }
   ],
   "users": [
