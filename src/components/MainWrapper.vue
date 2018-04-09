@@ -40,6 +40,10 @@
                     this.ToolData = response.data
                     console.log(response.data)
                     this.loadingGrid = false
+                  this.$message({
+                    message: 'Hentet data fra tools.',
+                    type: 'success'
+                  });
                 })
                 .catch(e => {
                     this.errors.push(e)

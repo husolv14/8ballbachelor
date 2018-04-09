@@ -75,6 +75,7 @@
         transition: box-shadow 0.1s ease-in-out;
         font-size: larger;
         color: white;
+      user-select: none;
     }
 
     .item:hover {
