@@ -1,7 +1,7 @@
 {
   "toolData": [
     {
-      "id": 1,
+      "widgetId": 1,
       "name": "Skjema",
       "schema": {
         "fields": [
@@ -22,7 +22,7 @@
             "label": "Navn på input",
             "model": "test",
             "disabled": true,
-            "class":"tryThis"
+            "class": "tryThis"
           },
           {
             "type": "Checkbox",
@@ -40,27 +40,27 @@
       }
     },
     {
-      "id": 1,
+      "widgetId": 1,
       "name": "Mail"
     },
     {
-      "id": 1,
+      "widgetId": 1,
       "name": "Vent"
     },
     {
-      "id": 1,
+      "widgetId": 1,
       "name": "Gjenta"
     },
     {
-      "id": 1,
+      "widgetId": 1,
       "name": "Alarm"
     },
     {
-      "id": 2,
+      "widgetId": 2,
       "name": "Annet"
     },
     {
-      "id": 2,
+      "widgetId": 2,
       "name": "Osv"
     }
   ],

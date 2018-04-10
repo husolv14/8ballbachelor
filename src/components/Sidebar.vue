@@ -92,7 +92,7 @@
     color: white;
     position: relative;
     float: left;
-    /*overflow-y: scroll;*/
+    overflow-y: scroll;
   }
   .refresh{
     margin-top: 10%;

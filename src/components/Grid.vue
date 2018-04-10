@@ -5,7 +5,7 @@
     </div>
     <!--<ul>-->
     <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
-      <Tool @destroy="destroyTool()" v-for="item in ToolData" :key="item.key" :widgetItem="item">
+      <Tool @destroy="destroyTool()" v-for="item in ToolData" :key="item.key" :toolItem="item">
       </Tool>
     </draggable>
 

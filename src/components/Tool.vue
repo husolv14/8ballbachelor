@@ -1,15 +1,15 @@
 <template>
   <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
-  <div draggable="false">
+  <div>
 
     <!--<draggable-->
     <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-    <div draggable="false" @dblclick="showModal=true" class="item">
-      <p class="thisText">{{widgetItem.name}}</p>
-      <el-dialog :title="widgetItem.name"
+    <div draggable="true" @dblclick="showModal=true" class="item">
+      <p class="thisText">{{toolItem.name}}</p>
+      <el-dialog :title="toolItem.name"
                  :visible.sync="showModal"
                  width="40%">
-        <!--<vue-form-generator :schema="widgetItem.schema"></vue-form-generator>-->
+        <vue-form-generator :schema="toolItem.schema"></vue-form-generator>
       </el-dialog>
 
     </div>
@@ -37,15 +37,15 @@
       Modal
     },
     props: [
-      'widgetItem'
+      'toolItem'
     ],
     methods: {
-      submit(showModal, widgetItem) {
-        console.log("Submit")
-        console.log(widgetItem.description)
-        this.showModal = false
-        return showModal
-      },
+      // submit(showModal, widgetItem) {
+      //   console.log("Submit")
+      //   console.log(widgetItem.description)
+      //   this.showModal = false
+      //   return showModal
+      // },
       upDateGrid(id) {
         this.$emit("updateGrid",id)
       },
@@ -78,7 +78,7 @@
     margin: 20px 10px 10px 10px;
     background-color: #20a8d8;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    transition: box-shadow 0.1s ease-in-out;
+    /*transition: box-shadow 1s ease-in-out;*/
     font-size: larger;
     color: white;
     float:left;
@@ -89,13 +89,13 @@
     cursor: grab;
   }
 
-  .item:active {
-    cursor: grabbing;
-  }
+  /*.item:active {*/
+    /*cursor: grabbing;*/
+  /*}*/
 
-  .item:active:hover {
-    cursor: grabbing
-  }
+  /*.item:active:hover {*/
+    /*cursor: grabbing*/
+  /*}*/
   .thisText{
     padding-top: 10px;
   }
