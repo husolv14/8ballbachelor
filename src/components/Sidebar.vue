@@ -36,8 +36,6 @@
 
 <script>
   // import Widget from '../components/Widget.vue'
-  import ApiFetch from './ApiFetch'
-  import Modal from './Modal'
   import Widget from './Widget'
 
   export default {
@@ -56,9 +54,7 @@
       }
     },
     components: {
-      Widget,
-      ApiFetch,
-      Modal
+      Widget
     },
     created(){
     },

@@ -1,7 +1,6 @@
 <template>
-  <div class="mainWrapper">
-    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList"
-             @addNewWidget="addNewWidget" :WidgetData="WidgetData">
+  <div class="mainWrapper" >
+    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
     </sidebar>
     <grid :loading="loadingGrid" :ToolData="ToolData"/>
     <el-dialog
@@ -30,9 +29,7 @@
 <script>
   import Sidebar from '../components/Sidebar'
   import Grid from '../components/Grid'
-  import ApiFetch from './ApiFetch'
   import axios from 'axios'
-
   export default {
     name: 'main-wrapper',
     data() {
@@ -51,8 +48,6 @@
     components: {
       Sidebar,
       Grid,
-      ApiFetch
-      //Modal
     },
     methods: {
 
@@ -146,6 +141,7 @@
           this.errors.push(e)
         })
     },
+
 
 
   }

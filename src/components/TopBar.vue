@@ -1,6 +1,6 @@
 <template>
     <div class="top-bar">
-        <img class="logo" src="../assets/logo2.png"/>
+        <img class="logo" src="../assets/logo.png"/>
     </div>
 </template>
 

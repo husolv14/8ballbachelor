@@ -15,10 +15,8 @@
 
 <script>
   import draggable from 'vuedraggable'
-  import Modal from "./Modal"
   import axios from 'axios'
   import Widget from "./Widget";
-  import ToolFetch from './ToolFetch'
   import Tool from './Tool'
 
   export default {
@@ -34,9 +32,7 @@
     },
     components: {
       Widget,
-      Modal,
       draggable,
-      ToolFetch,
       Tool
     },
     methods: {

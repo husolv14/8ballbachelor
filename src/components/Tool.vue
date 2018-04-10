@@ -18,8 +18,6 @@
 
 <script>
   import draggable from 'vuedraggable'
-  import ListGenerator from './ListGenerator'
-  import Modal from './Modal'
 
   export default {
     name: "tool",
@@ -33,8 +31,6 @@
 
     components: {
       draggable,
-      ListGenerator,
-      Modal
     },
     props: [
       'toolItem'
