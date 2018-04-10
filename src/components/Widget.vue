@@ -17,8 +17,6 @@
 
 <script>
     import draggable from 'vuedraggable'
-    import ListGenerator from './ListGenerator'
-    import Modal from './Modal'
 
     export default {
         name: "widget",
@@ -31,9 +29,7 @@
         },
 
         components: {
-            draggable,
-            ListGenerator,
-            Modal
+            draggable
         },
         props: [
             'widgetItem'

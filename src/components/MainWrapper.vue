@@ -11,8 +11,6 @@
 <script>
   import Sidebar from '../components/Sidebar'
   import Grid from '../components/Grid'
-  //import Modal from '../components/Modal'
-  import ApiFetch from './ApiFetch'
   import axios from 'axios'
   export default {
     name: 'main-wrapper',
@@ -27,8 +25,6 @@
     components: {
       Sidebar,
       Grid,
-      ApiFetch
-      //Modal
     },
     methods:{
         updateGrid(id){
