@@ -1,15 +1,11 @@
 <template>
   <div class="grid">
-    <div class="titleBar">
-      <div class="titleText">Drag & Drop</div>
-    </div>
-    <!--<ul>-->
+    <div>
     <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
-      <Tool @destroy="destroyTool()" v-for="item in ToolData" :key="item.key" :toolItem="item">
+      <Tool @notConditional="notConditional" @isConditional="newDraggable" @destroy="destroy" v-for="item in ToolData" :key="item.key" :toolItem="item">
       </Tool>
     </draggable>
-
-    <!--</ul>-->
+    </div>
   </div>
 </template>
 
@@ -26,7 +22,8 @@
         showModal: false,
         name: "Legg til flere verktøy",
         value: "",
-        ToolList: {}
+        ToolList: {},
+
 
       }
     },
@@ -36,21 +33,16 @@
       Tool
     },
     methods: {
-      placeOnGrid(value) {
-        alert(value)
+      notConditional(){
+        this.$emit('grid-notConditional')
       },
-      getTool() {
-        axios.get(`http://localhost:3000/tooldata`)
-          .then(response => {
-            this.ToolList = response.data
-          })
-          .catch(e => {
-            console.log(e)
-          })
+      newDraggable(array){
+        this.$emit('createNewGrid' , array)
       },
-      destroyTool() {
-        console.log("DESTROY")
-        this.$destroy()
+
+      destroy(id) {
+        console.log("DESTROY emit from grid with id : " + id)
+        this.$emit('destroy', id)
       }
     },
     props: [
@@ -67,7 +59,6 @@
   .grid {
     /*display: inline-block;*/
     min-width: 80%;
-    width: auto;
     /*overflow:hidden;*/
     margin-left: 14%;
   }
@@ -91,21 +82,6 @@
 
   h3 {
     width: 10%;
-  }
-
-  .titleBar {
-    background-color: #f0f3f5;
-    height: 60px;
-    width: 100%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  }
-
-  .titleText {
-    text-align: left;
-    padding-top: 21px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 1%;
   }
 
 </style>

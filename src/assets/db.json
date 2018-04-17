@@ -1,4 +1,56 @@
 {
+  "runData": [
+    {
+      "name": "Alarm",
+      "widgetId": 2,
+      "id": 5
+    },
+    {
+      "name": "Mail",
+      "widgetId": 2,
+      "id": 7
+    },
+    {
+      "name": "Gjenta",
+      "widgetId": 3,
+      "id": 11
+    },
+    {
+      "name": "Vent",
+      "widgetId": 1,
+      "id": 14
+    },
+    {
+      "name": "Gjenta",
+      "widgetId": 1,
+      "id": 15
+    },
+    {
+      "name": "Alarm",
+      "widgetId": 1,
+      "id": 16
+    },
+    {
+      "name": "Mail",
+      "widgetId": 1,
+      "id": 17
+    },
+    {
+      "name": "Conditional",
+      "widgetId": 1,
+      "id": 18,
+      "tools": [
+        {
+          "name": "Mail"
+        }
+      ]
+    },
+    {
+      "name": "Conditional",
+      "widgetId": 2,
+      "id": 19
+    }
+  ],
   "toolData": [
     {
       "widgetId": 1,
@@ -62,6 +114,9 @@
     {
       "widgetId": 2,
       "name": "Osv"
+    },
+    {
+      "name": "Conditional"
     }
   ],
   "widgetData": [
@@ -74,6 +129,16 @@
       "name": "Endre mailfrekvens",
       "dbName": "asda",
       "id": 2
+    },
+    {
+      "name": "Asdf",
+      "dbName": "Denne",
+      "id": 3
+    },
+    {
+      "name": "asdasda",
+      "dbName": "asdasd",
+      "id": 4
     }
   ],
   "users": [

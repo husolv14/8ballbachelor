@@ -1,15 +1,17 @@
 <template>
   <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
   <div>
-
     <!--<draggable-->
     <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-    <div draggable="true" @dblclick="showModal=true" class="item">
-      <p class="thisText">{{toolItem.name}}</p>
+    <div draggable="true" @destroy="destroyEmit"@dblclick="showModal=true" class="item">
+      <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
                  :visible.sync="showModal"
                  width="40%">
-        <vue-form-generator :schema="toolItem.schema"></vue-form-generator>
+        <el-button icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>
+        <!--<vue-form-generator :schema="toolItem.schema"></vue-form-generator>-->
+        <!--<form-generator :schema="toolItem.schema"></form-generator>-->
+
       </el-dialog>
 
     </div>
@@ -18,6 +20,8 @@
 
 <script>
   import draggable from 'vuedraggable'
+  import formGenerator from './FormGenerator'
+
 
   export default {
     name: "tool",
@@ -25,23 +29,20 @@
       return {
         // widgetData: [],
         // errors: [],
-        showModal: false
+        showModal: false,
+        conditional: false
       }
     },
 
     components: {
       draggable,
+      formGenerator
     },
     props: [
       'toolItem'
     ],
     methods: {
-      // submit(showModal, widgetItem) {
-      //   console.log("Submit")
-      //   console.log(widgetItem.description)
-      //   this.showModal = false
-      //   return showModal
-      // },
+
       upDateGrid(id) {
         this.$emit("updateGrid",id)
       },
@@ -51,10 +52,21 @@
         return showModal
 
       },
-      destroyEmit(){
-        this.$emit('destroy')
+      destroyEmit(id){
+        console.log('Starting destroy emit with ID : ' + id)
+        this.showModal=false
+        this.$emit('destroy', id)
+      },
 
-      }
+    },
+    created(){
+        if (this.toolItem.name == 'Conditional'){
+          this.conditional = true
+          this.$emit('isConditional', this.toolItem.tools)
+        }
+        else {
+          this.$emit('notConditional')
+        }
     }
   }
 </script>
@@ -83,6 +95,8 @@
   .item:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     cursor: grab;
+  }
+  .toolText{
   }
 
   /*.item:active {*/

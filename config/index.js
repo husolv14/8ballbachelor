@@ -45,11 +45,11 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../DragTool/DragTool.php'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsRoot: path.resolve(__dirname, '../DragTool'),
+    assetsSubDirectory: 'ViewTempl',
     assetsPublicPath: '/',
 
     /**
