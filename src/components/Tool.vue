@@ -20,7 +20,6 @@
 
 <script>
   import draggable from 'vuedraggable'
-  import formGenerator from './FormGenerator'
 
 
   export default {
@@ -35,8 +34,7 @@
     },
 
     components: {
-      draggable,
-      formGenerator
+      draggable
     },
     props: [
       'toolItem'

@@ -6,7 +6,7 @@
       <Widget @updateGrid="updateGrid" :widgetItem="item"></Widget>
     </div>
     <div>
-      <el-button @click="showModal = true" type="success">Legg til flere widgets <i class="el-icon-plus el-icon-right"></i></el-button>
+      <el-button class="button" type="primary" @click="showModal = true" >Legg til flere widgets <i class="el-icon-plus el-icon-right"></i></el-button>
       <el-dialog
         :title="name"
         :visible.sync="showModal"
@@ -93,5 +93,8 @@
   .refresh{
     margin-top: 10%;
     background-color: #29363d ;
+  }
+  .button{
+
   }
 </style>
