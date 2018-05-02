@@ -82,7 +82,7 @@
     text-align: center;
     min-width: 233.78px;
     margin: 20px 10px 10px 10px;
-    background-color: #20a8d8;
+    background-color: rgb(32, 168, 216);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     /*transition: box-shadow 1s ease-in-out;*/
     font-size: larger;

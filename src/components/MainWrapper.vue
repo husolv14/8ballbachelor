@@ -2,10 +2,10 @@
   <div class="mainWrapper" >
     <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
     </sidebar>
-    <div class="titleBar">
+    <!--<div class="titleBar">
       <div class="titleText">Drag & Drop</div>
-    </div>
-    <grid @grid-notConditional="newGrid=false" @createNewGrid="createNewGrid" @destroy="deleteTool" :loading="loadingGrid" :ToolData="ToolPost"/>
+    </div>/-->
+    <grid @grid-notConditional="newGrid=false" @createNewGrid="createNewGrid" @destroy="deleteTool" :loading="loadingGrid" :ToolData="ToolPost" :gridTitle="gridTitle"/>
     <grid v-if="newGrid" :ToolData = "gridList"/>
     <el-dialog
       :title="name"
@@ -22,7 +22,7 @@
         </el-option>
       </el-select>
     </el-dialog>
-    <el-button type="success" @click="getTool">Legg til nye verktøy</el-button>
+    <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
     <el-button class="refresh" type="info" icon="el-icon-refresh" @click="update(state)" circle></el-button>
     <!--modal/-->
   </div>
@@ -49,7 +49,8 @@
         gridCount:0,
         state: "",
         gridList:{},
-        newGrid: false
+        newGrid: false,
+        gridTitle:"Drag and Drop"
       }
     },
     components: {
@@ -71,10 +72,12 @@
           console.log(e)
         })
       },
-      updateGrid(id) {
+      updateGrid(id,name) {
         // this.newGrid = false
         this.loadingGrid = true
         this.state = id
+        this.gridTitle = name
+
         console.log("STATE = " + id)
         console.log("Updating Grid")
         axios.get(`http://localhost:3000/runData?widgetId=` + id)
@@ -179,19 +182,20 @@
 <style scoped>
   .mainWrapper {
     height: 60em;
-    background-color: #f0f3f5;
+    background-color: rgb(228, 229, 230);
     width: auto;
   }
 
   h3 {
     position: relative;
   }
-  .titleBar {
-    background-color: #f0f3f5;
+  /*.titleBar {
+    background-color: rgb(240, 243, 245);
     float: left;
     height: 60px;
     width: 80%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-left: 30px;
   }
 
   .titleText {
@@ -200,5 +204,12 @@
     font-size: 20px;
     font-weight: bold;
     margin-left: 1%;
+  }*/
+
+  .button2{
+    background-color: rgb(32, 168, 216);
+    border: 0px;
+    border-radius: 0px;
   }
+
 </style>

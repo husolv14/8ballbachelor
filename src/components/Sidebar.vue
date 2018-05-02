@@ -1,6 +1,6 @@
 <template>
   <div v-loading="loading" class="Sidebar">
-    <h1>Løp</h1>
+    <h1 class="title">Løp</h1>
     <!--<api-fetch v-model="WidgetData"></api-fetch>-->
     <div  v-model="widgetData" v-for="item in WidgetData">
       <Widget @updateGrid="updateGrid" :widgetItem="item"></Widget>
@@ -35,47 +35,47 @@
 </template>
 
 <script>
-  // import Widget from '../components/Widget.vue'
-  import Widget from './Widget'
+// import Widget from '../components/Widget.vue'
+import Widget from './Widget'
 
-  export default {
-    name: 'Sidebar',
-    data() {
-      return {
-          id:"",
-        showModal: false,
-        name: "Legg til nytt løp",
-        widgetData:{},
-        formData: {
-          name: "",
-          dbName:""
-        },
-          loading:false
-      }
-    },
-    components: {
-      Widget
-    },
-    created(){
-    },
-    methods: {
-      close() {
-        return this.showModal = false
+export default {
+  name: 'Sidebar',
+  data () {
+    return {
+      id: '',
+      showModal: false,
+      name: 'Legg til nytt løp',
+      widgetData: {},
+      formData: {
+        name: '',
+        dbName: ''
       },
-      postWidget(formData) {
-        this.$emit("addNewWidget", formData)
-        this.close()
-      },
-      update(){
-        this.$emit("updateList")
-      },
-        updateGrid(id){
-          console.log("DETTE ER id " + id)
-          this.$emit("sidebar-UpdateGrid", id)
-        }
+      loading: false
+    }
+  },
+  components: {
+    Widget
+  },
+  created () {
+  },
+  methods: {
+    close () {
+      return this.showModal = false
     },
-    props:['WidgetData']
-  }
+    postWidget (formData) {
+      this.$emit('addNewWidget', formData)
+      this.close()
+    },
+    update () {
+      this.$emit('updateList')
+    },
+    updateGrid (id,name) {
+      console.log('DETTE ER id ' + id)
+      this.$emit('sidebar-UpdateGrid', id, name)
+    }
+  },
+  props: ['WidgetData']
+}
 
 </script>
 
@@ -83,18 +83,33 @@
   .Sidebar {
     width: auto;
     min-width: 270.77px;
-    background-color: #29363d;
+    background-color: rgb(41, 54, 61);
     height: 100%;
     color: white;
     position: relative;
     float: left;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .refresh{
     margin-top: 10%;
     background-color: #29363d ;
   }
   .button{
+    width: 100%;
+    background-color: rgb(32, 168, 216);
+    border: 0px;
+    border-radius: 0px;
+    text-align: left;
+    padding-left: 40px;
+  }
 
+  .title{
+    background-color: rgb(33, 43, 49);
+    text-align: left;
+    padding-left: 40px;
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0px;
   }
 </style>

@@ -4,7 +4,7 @@
 
         <!--<draggable-->
         <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-        <div draggable="false" @dblclick="upDateGrid(widgetItem.id)" class="item">
+        <div draggable="false" @dblclick="upDateGrid(widgetItem.id, widgetItem.name)" class="item">
             {{widgetItem.name}}
             <!--<br><img class="icon" :src="widgetItem.icon"/>-->
         </div>
@@ -41,8 +41,8 @@
                 this.showModal = false
                 return showModal
             },
-            upDateGrid(id) {
-                this.$emit("updateGrid",id)
+            upDateGrid(id,name) {
+                this.$emit("updateGrid",id,name)
             },
             close(showModal) {
                 console.log("Cancel")
@@ -64,20 +64,25 @@
 
     .item {
         height: 35.55px;
-        text-align: center;
+        text-align: left;
         min-width: 233.78px;
-        margin: 0px 10px 10px 10px;
+        margin: 0px 0px 0px 0px;
+        padding-top: 10px;
+        padding-left: 40px;
+        padding-right: 0px;
+        width: auto;
         /*background-color: #000000;*/
         transition: box-shadow 0.1s ease-in-out;
         font-size: larger;
         color: white;
-      user-select: none;
+        user-select: none;
+        background-color: rgb(33, 43, 49);
     }
 
     .item:hover {
       cursor:pointer;
-      background-color:#20a8d8;
-      transition:0.1s ease;
+      background-color: rgb(32, 168, 216);
+      /*transition:0.1s ease;*/
     }
 
     .item:target {

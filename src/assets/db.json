@@ -49,6 +49,11 @@
       "name": "Conditional",
       "widgetId": 2,
       "id": 19
+    },
+    {
+      "name": "Annet",
+      "widgetId": 1,
+      "id": 20
     }
   ],
   "toolData": [
