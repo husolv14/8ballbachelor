@@ -81,7 +81,7 @@
     margin-bottom: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     overflow-x: auto;
-    min-width: 80%;
+    /*min-width: 80%;*/
   }
 
   h3 {
@@ -108,5 +108,6 @@
   .dragtitle{
     width: 100%;
     padding-top: 20px;
+    padding-left: 10px;
   }
 </style>
