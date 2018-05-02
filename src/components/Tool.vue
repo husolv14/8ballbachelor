@@ -3,7 +3,7 @@
   <div>
     <!--<draggable-->
     <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-    <div draggable="true" @destroy="destroyEmit"@dblclick="showModal=true" class="item">
+    <div draggable="true" @destroy="destroyEmit"@dblclick="showModal=true">
       <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
                  :visible.sync="showModal"

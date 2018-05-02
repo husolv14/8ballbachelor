@@ -5,8 +5,8 @@
         <div class="titleText">{{gridTitle}}</div>
       </div>
       <div>
-        <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
-          <Tool @notConditional="notConditional" @isConditional="newDraggable" @destroy="destroy" v-for="item in ToolData" :key="item.key" :toolItem="item">
+        <draggable v-loading="loading" class="drag" :options="{animation:180, group:'grid'}">
+          <Tool class="item" @notConditional="notConditional" @isConditional="newDraggable" @destroy="destroy" v-for="item in ToolData" :key="item.key" :toolItem="item">
           </Tool>
         </draggable>
       </div>
@@ -109,5 +109,4 @@
     width: 100%;
     padding-top: 20px;
   }
-
 </style>
