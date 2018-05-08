@@ -1,11 +1,6 @@
 {
   "runData": [
     {
-      "name": "Alarm",
-      "widgetId": 2,
-      "id": 5
-    },
-    {
       "name": "Mail",
       "widgetId": 2,
       "id": 7
@@ -49,11 +44,6 @@
       "name": "Conditional",
       "widgetId": 2,
       "id": 19
-    },
-    {
-      "name": "Annet",
-      "widgetId": 1,
-      "id": 20
     }
   ],
   "toolData": [
