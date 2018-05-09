@@ -1,10 +1,15 @@
 <template>
   <div class="grid">
-    <div>
-    <draggable v-loading="loading" class="drag" :options="{animation:150, group:'grid'}">
-      <Tool @notConditional="notConditional" @isConditional="newDraggable" @destroy="destroy" v-for="item in ToolData" :key="item.key" :toolItem="item">
-      </Tool>
-    </draggable>
+    <div class="dragtitle">
+      <div class="titleBar">
+        <div class="titleText">{{gridTitle}}</div>
+      </div>
+      <div>
+        <draggable :list="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid'}">
+          <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index">
+          </Tool>
+        </draggable>
+      </div>
     </div>
   </div>
 </template>
@@ -23,8 +28,8 @@
         name: "Legg til flere verktøy",
         value: "",
         ToolList: {},
-
-
+        thisThing: [],
+        list1:[]
       }
     },
     components: {
@@ -46,7 +51,7 @@
       }
     },
     props: [
-      'ToolData', 'loading'
+      'ToolData', 'loading','gridTitle'
     ],
     created() {
     }
@@ -63,25 +68,44 @@
     margin-left: 14%;
   }
 
-  li {
-    opacity: 1;
-  }
-
   .drag {
-    width: auto;
-    list-style: none;
-    min-height: 225px;
+    min-height: 170px;
     background-color: #FFF;
-    margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    overflow-x: scroll;
-    min-width: 80%;
-
+    overflow-x: auto!important;
+    /*min-width: 80%;*/
   }
 
   h3 {
     width: 10%;
   }
 
+  .titleBar {
+    background-color: rgb(240, 243, 245);
+    float: top;
+    height: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .titleText {
+    text-align: left;
+    padding-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 1%;
+  }
+
+  .dragtitle{
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+  .help{
+
+  }
 </style>

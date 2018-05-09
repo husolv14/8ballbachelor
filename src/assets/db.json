@@ -1,11 +1,6 @@
 {
   "runData": [
     {
-      "name": "Alarm",
-      "widgetId": 2,
-      "id": 5
-    },
-    {
       "name": "Mail",
       "widgetId": 2,
       "id": 7
@@ -129,16 +124,6 @@
       "name": "Endre mailfrekvens",
       "dbName": "asda",
       "id": 2
-    },
-    {
-      "name": "Asdf",
-      "dbName": "Denne",
-      "id": 3
-    },
-    {
-      "name": "asdasda",
-      "dbName": "asdasd",
-      "id": 4
     }
   ],
   "users": [

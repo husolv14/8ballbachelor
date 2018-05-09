@@ -56,6 +56,7 @@
   }
   body{
     background-color: #e4e5e6;
+    margin: 0;
   }
 
 </style>
