@@ -1,12 +1,11 @@
 <template>
-  <div class="mainWrapper" >
-    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList" @addNewWidget="addNewWidget" :WidgetData="WidgetData">
+  <div class="mainWrapper">
+    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList"
+             @addNewWidget="addNewWidget" :WidgetData="WidgetData">
     </sidebar>
-    <!--<div class="titleBar">
-      <div class="titleText">Drag & Drop</div>
-    </div>/-->
-    <grid @grid-notConditional="newGrid=false" @createNewGrid="createNewGrid" @destroy="deleteTool" :loading="loadingGrid" :ToolData="ToolPost" :gridTitle="gridTitle"/>
-    <grid v-if="newGrid" :ToolData = "gridList"/>
+    <grid @createNewGrid="createNewGrid" @destroy="deleteTool" :loading="loadingGrid" :ToolData="ToolPost"
+          :gridTitle="gridTitle"/>
+    <grid v-if="newGrid" :ToolData="gridList" :grid-title="gridTitle + ' conditional'"/>
     <el-dialog
       :title="name"
       :visible.sync="showModal"
@@ -24,6 +23,7 @@
     </el-dialog>
     <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
     <el-button class="refresh" type="info" icon="el-icon-refresh" @click="update(state)" circle></el-button>
+    <el-button class="button3" type="success" @click="">Lagre løp</el-button>
     <!--modal/-->
   </div>
 
@@ -33,6 +33,7 @@
   import Sidebar from '../components/Sidebar'
   import Grid from '../components/Grid'
   import axios from 'axios'
+
   export default {
     name: 'main-wrapper',
     data() {
@@ -42,15 +43,15 @@
         ToolData: {},
         loadingGrid: false,
         loadingSidebar: false,
-        ToolList:[],
+        ToolList: [],
         value: "",
-        ToolPost:[],
+        ToolPost: [],
         name: "Legg til flere verktøy",
-        gridCount:0,
+        gridCount: 0,
         state: "",
-        gridList:{},
+        gridList: {},
         newGrid: false,
-        gridTitle:"Drag and Drop"
+        gridTitle: "Drag and Drop"
       }
     },
     components: {
@@ -58,22 +59,23 @@
       Grid,
     },
     methods: {
-      createNewGrid(array){
+      createNewGrid(array) {
         // this.gridList.push(this.toolPost)
         // this.gridList.push(array)
         this.newGrid = true
-      this.gridList = array
+        this.gridList = array
       },
-      deleteTool(id){
+      deleteTool(id) {
         console.log('MainWrapper - Delete from json with id : ' + id)
-        axios.delete('http://localhost:3000/runData/' + id).then(response =>{
+        axios.delete('http://localhost:3000/runData/' + id).then(response => {
           console.log(response.data)
         }).catch(e => {
           console.log(e)
         })
       },
-      updateGrid(id,name) {
+      updateGrid(id, name) {
         // this.newGrid = false
+        this.newGrid = false
         this.loadingGrid = true
         this.state = id
         this.gridTitle = name
@@ -107,7 +109,7 @@
           })
       },
 
-      submitTool(tool){
+      submitTool(tool) {
 
         axios.post(`http://localhost:3000/runData`, {
           name: tool,
@@ -130,11 +132,11 @@
         this.showModal = false
         this.$emit('UPDATE')
       },
-      update(id){
+      update(id) {
         console.log("NEW GRID = ")
         this.loadingGrid = true
         console.log('Update Grid')
-        axios.get('http://localhost:3000/runData?widgetId=' + id).then(response=> {
+        axios.get('http://localhost:3000/runData?widgetId=' + id).then(response => {
           this.ToolPost = response.data
           this.loadingGrid = false
         })
@@ -154,7 +156,7 @@
           })
       }
     },
-    changeState(id){
+    changeState(id) {
 
       this.state = id
       console.log("STATE IS FOLLOWING : " + this.state)
@@ -175,41 +177,30 @@
     },
 
 
-
   }
 </script>
 
 <style scoped>
   .mainWrapper {
-    height: 60em;
+    height: 58em;
     background-color: rgb(228, 229, 230);
     width: auto;
+    overflow: hidden;
   }
 
   h3 {
     position: relative;
   }
-  /*.titleBar {
-    background-color: rgb(240, 243, 245);
-    float: left;
-    height: 60px;
-    width: 80%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin-left: 30px;
-  }
 
-  .titleText {
-    text-align: left;
-    padding-top: 21px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 1%;
-  }*/
-
-  .button2{
+  .button2 {
     background-color: rgb(32, 168, 216);
     border: 0px;
     border-radius: 0px;
+  }
+
+  .button3 {
+    float: right;
+    margin-right: 25px;
   }
 
 </style>

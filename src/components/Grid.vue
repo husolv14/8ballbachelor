@@ -5,8 +5,8 @@
         <div class="titleText">{{gridTitle}}</div>
       </div>
       <div>
-        <draggable v-loading="loading" class="drag" :options="{animation:180, group:'grid'}">
-          <Tool class="item" @notConditional="notConditional" @isConditional="newDraggable" @destroy="destroy" v-for="item in ToolData" :key="item.key" :toolItem="item">
+        <draggable :list="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid'}">
+          <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index">
           </Tool>
         </draggable>
       </div>
@@ -28,8 +28,8 @@
         name: "Legg til flere verktøy",
         value: "",
         ToolList: {},
-
-
+        thisThing: [],
+        list1:[]
       }
     },
     components: {
@@ -68,19 +68,14 @@
     margin-left: 14%;
   }
 
-  li {
-    opacity: 1;
-  }
-
   .drag {
-    list-style: none;
-    min-height: 225px;
+    min-height: 170px;
     background-color: #FFF;
     margin-left: 30px;
     margin-right: 30px;
     margin-bottom: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    overflow-x: auto;
+    overflow-x: auto!important;
     /*min-width: 80%;*/
   }
 
@@ -109,5 +104,8 @@
     width: 100%;
     padding-top: 20px;
     padding-left: 10px;
+  }
+  .help{
+
   }
 </style>

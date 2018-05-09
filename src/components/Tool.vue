@@ -1,26 +1,26 @@
 <template>
-  <!--<ListGenerator :thisProp="widgetData"></ListGenerator>-->
-  <div>
-    <!--<draggable-->
-    <!--:options="{animation:150,group:{name: 'grid', put:false},multipleDropzonesItemsDraggingEnabled: true}" class="list" >-->
-    <div draggable="true" @destroy="destroyEmit"@dblclick="showModal=true">
+  <div @dblclick="showModal=true">
+    <div draggable="true" @destroy="destroyEmit">
       <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
                  :visible.sync="showModal"
                  width="40%">
+
+        <div class="form" v-if="toolItem.name === 'Mail'"><Mail></Mail></div>
+        <div class="form" v-if="toolItem.name === 'Vent'"><Vent></Vent></div>
+        <div class="form" v-if="toolItem.name === 'Gjenta'"><Gjenta></Gjenta></div>
+        <div class="form" v-if="toolItem.name === 'Alarm'"><Alarm></Alarm></div>
         <el-button icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>
-        <!--<vue-form-generator :schema="toolItem.schema"></vue-form-generator>-->
-        <!--<form-generator :schema="toolItem.schema"></form-generator>-->
-
       </el-dialog>
-
     </div>
   </div>
 </template>
 
 <script>
-  import draggable from 'vuedraggable'
-
+import Mail from '../forms/Mail'
+import Vent from '../forms/Vent'
+import Gjenta from '../forms/Gjenta'
+import Alarm from '../forms/Alarm'
 
   export default {
     name: "tool",
@@ -29,15 +29,19 @@
         // widgetData: [],
         // errors: [],
         showModal: false,
-        conditional: false
+        conditional: false,
+        form:{
+        }
       }
     },
-
-    components: {
-      draggable
+    components:{
+      Mail,
+      Vent,
+      Gjenta,
+      Alarm
     },
     props: [
-      'toolItem'
+      'toolItem', 'index'
     ],
     methods: {
 
@@ -62,14 +66,17 @@
           this.conditional = true
           this.$emit('isConditional', this.toolItem.tools)
         }
-        else {
-          this.$emit('notConditional')
-        }
     }
   }
 </script>
 
 <style scoped>
+  .form{
+    width: 600px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 25px;
+  }
   .icon {
     height: 120px;
     width: 200px;
@@ -84,7 +91,7 @@
     margin: 20px 10px 10px 10px;
     background-color: rgb(32, 168, 216);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    /*transition: box-shadow 1s ease-in-out;*/
+    transition: box-shadow 100ms ease-in-out;
     font-size: larger;
     color: white;
     float:left;
