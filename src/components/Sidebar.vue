@@ -1,9 +1,9 @@
 <template>
   <div v-loading="loading" class="Sidebar">
     <h1 class="title">Løp</h1>
-    <!--<api-fetch v-model="WidgetData"></api-fetch>-->
-    <div  v-model="widgetData" v-for="item in WidgetData">
-      <Widget @updateGrid="updateGrid" :widgetItem="item"></Widget>
+    <!--<api-fetch v-model="FlowData"></api-fetch>-->
+    <div  v-model="FlowData" v-for="item in FlowData">
+      <Widget @updateGrid="updateGrid" :FlowItem="item"></Widget>
     </div>
     <div>
       <el-button class="button" type="primary" @click="showModal = true" >{{name}} <i class="el-icon-plus el-icon-right"></i></el-button>
@@ -36,7 +36,7 @@
 
 <script>
 // import Widget from '../components/Widget.vue'
-import Widget from './Widget'
+import Widget from './Flow'
 
 export default {
   name: 'Sidebar',
@@ -45,7 +45,6 @@ export default {
       id: '',
       showModal: false,
       name: 'Legg til nytt løp',
-      widgetData: {},
       formData: {
         name: '',
         dbName: ''
@@ -63,18 +62,18 @@ export default {
       return this.showModal = false
     },
     postWidget (formData) {
-      this.$emit('addNewWidget', formData)
+      this.$emit('addNewFlow', formData)
       this.close()
     },
     update () {
-      this.$emit('updateList')
+      this.$emit('updateFlowList')
     },
     updateGrid (id,name) {
-      console.log('DETTE ER id ' + id)
+      console.log('Debug : DETTE ER id ' + id)
       this.$emit('sidebar-UpdateGrid', id, name)
     }
   },
-  props: ['WidgetData']
+  props: ['FlowData']
 }
 
 </script>

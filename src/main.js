@@ -26,7 +26,7 @@ new Vue({
   el: '#app',
   data(){
     return{
-      WidgetData: []
+      FlowData: []
     }
 
   },

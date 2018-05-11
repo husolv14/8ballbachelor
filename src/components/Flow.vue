@@ -1,7 +1,7 @@
 <template>
-  <a :href=" '#' + widgetItem.id" draggable="false" class="link">
-    <div :id="widgetItem.id" draggable="false" @click="upDateGrid(widgetItem.id, widgetItem.name)" class="item">
-      {{widgetItem.name}}
+  <a :href=" '#' + FlowItem.id" draggable="false" class="link">
+    <div :id="FlowItem.id" draggable="false" @click="upDateGrid(FlowItem.id, FlowItem.name)" class="item">
+      {{FlowItem.name}}
     </div>
   </a>
 </template>
@@ -10,7 +10,7 @@
   import draggable from 'vuedraggable'
 
   export default {
-    name: "widget",
+    name: "flow",
     data() {
       return {
         // widgetData: [],
@@ -23,20 +23,14 @@
       draggable
     },
     props: [
-      'widgetItem'
+      'FlowItem'
     ],
     methods: {
-      submit(showModal, widgetItem) {
-        console.log("Submit")
-        console.log(widgetItem.description)
-        this.showModal = false
-        return showModal
-      },
       upDateGrid(id, name) {
         this.$emit("updateGrid", id, name)
       },
       close(showModal) {
-        console.log("Cancel")
+        console.log("Debug : Cancel")
         this.showModal = false
         return showModal
 

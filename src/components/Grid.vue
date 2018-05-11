@@ -17,7 +17,7 @@
 <script>
   import draggable from 'vuedraggable'
   import axios from 'axios'
-  import Widget from "./Widget";
+  import Widget from "./Flow";
   import Tool from './Tool'
 
   export default {

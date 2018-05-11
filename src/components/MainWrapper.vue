@@ -1,7 +1,7 @@
 <template>
   <div class="mainWrapper">
-    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateList="updateList"
-             @addNewWidget="addNewWidget" :WidgetData="WidgetData">
+    <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid" @updateFlowList="updateFlowList"
+             @addNewFlow="addNewFlow" :FlowData="FlowData">
     </sidebar>
     <grid @createNewGrid="createNewGrid" @destroy="deleteTool" :loading="loadingGrid" :ToolData="ToolPost"
           :gridTitle="gridTitle"/>
@@ -38,7 +38,7 @@
     name: 'main-wrapper',
     data() {
       return {
-        WidgetData: {},
+        FlowData: {},
         showModal: false,
         ToolData: {},
         loadingGrid: false,
@@ -66,7 +66,7 @@
         this.gridList = array
       },
       deleteTool(id) {
-        console.log('MainWrapper - Delete from json with id : ' + id)
+        console.log('Debug : MainWrapper - Delete from json with id : ' + id)
         axios.delete('http://localhost:3000/runData/' + id).then(response => {
           console.log(response.data)
         }).catch(e => {
@@ -80,8 +80,8 @@
         this.state = id
         this.gridTitle = name
 
-        console.log("STATE = " + id)
-        console.log("Updating Grid")
+        console.log("Debug : STATE = " + id)
+        console.log("Debug : Updating Grid")
         axios.get(`http://localhost:3000/runData?widgetId=` + id)
           .then(response => {
             // JSON responses are automatically parsed.
@@ -118,7 +118,7 @@
         this.showModal = false
       },
 
-      addNewWidget(formData) {
+      addNewFlow(formData) {
         axios.post(`http://localhost:3000/WidgetData`, {
             name: formData.name,
             dbName: formData.dbName
@@ -133,22 +133,22 @@
         this.$emit('UPDATE')
       },
       update(id) {
-        console.log("NEW GRID = ")
+        console.log("Debug : NEW GRID = ")
         this.loadingGrid = true
-        console.log('Update Grid')
+        console.log('Debug : Update Grid')
         axios.get('http://localhost:3000/runData?widgetId=' + id).then(response => {
           this.ToolPost = response.data
           this.loadingGrid = false
         })
       },
 
-      updateList() {
+      updateFlowList() {
         this.loadingSidebar = true
-        console.log("UPDATING LIST")
+        console.log("Debug : UPDATING FLOW LIST")
         axios.get(`http://localhost:3000/widgetData`)
           .then(response => {
             // JSON responses are automatically parsed.
-            this.WidgetData = response.data
+            this.FlowData = response.data
             this.loadingSidebar = false
           })
           .catch(e => {
@@ -159,21 +159,11 @@
     changeState(id) {
 
       this.state = id
-      console.log("STATE IS FOLLOWING : " + this.state)
+      console.log("Debug : STATE IS FOLLOWING : " + this.state)
     },
 
     created() {
-      this.loadingSidebar = true
-      axios.get(`http://localhost:3000/widgetData`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.WidgetData = response.data
-          this.loadingSidebar = false
-
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+      this.updateFlowList()
     },
 
 
