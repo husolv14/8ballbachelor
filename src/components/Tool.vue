@@ -1,5 +1,5 @@
 <template>
-  <div @dblclick="showModal=true">
+  <div @change="test" @dblclick="showModal=true">
     <div draggable="true" @destroy="destroyEmit">
       <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
@@ -10,7 +10,12 @@
         <div class="form" v-if="toolItem.name === 'Vent'"><Vent></Vent></div>
         <div class="form" v-if="toolItem.name === 'Gjenta'"><Gjenta></Gjenta></div>
         <div class="form" v-if="toolItem.name === 'Alarm'"><Alarm></Alarm></div>
-        <el-button icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>
+        <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitTool(value)">Lagre</el-button>
+        <el-button @click="showModal= false">Avbryt</el-button>
+
+          <el-button icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>
+        </span>
       </el-dialog>
     </div>
   </div>
@@ -29,9 +34,7 @@ import Alarm from '../forms/Alarm'
         // widgetData: [],
         // errors: [],
         showModal: false,
-        conditional: false,
-        form:{
-        }
+        conditional: false
       }
     },
     components:{
@@ -41,10 +44,12 @@ import Alarm from '../forms/Alarm'
       Alarm
     },
     props: [
-      'toolItem', 'index'
+      'toolItem', 'index', 'change'
     ],
     methods: {
-
+      test(){
+        alert('works')
+      },
       upDateGrid(id) {
         this.$emit("updateGrid",id)
       },

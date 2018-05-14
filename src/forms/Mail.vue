@@ -13,8 +13,6 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-button type="primary" @click="">Create</el-button>
-    <el-button @click="showModal= false">Cancel</el-button>
 
   </el-form>
 </template>

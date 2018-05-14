@@ -5,8 +5,8 @@
         <div class="titleText">{{gridTitle}}</div>
       </div>
       <div>
-        <draggable :list="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid'}">
-          <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index">
+        <draggable :list="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid', scroll: true}">
+          <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in orderedArray" :key="index" :toolItem="item" :index="index">
           </Tool>
         </draggable>
       </div>
@@ -29,7 +29,8 @@
         value: "",
         ToolList: {},
         thisThing: [],
-        list1:[]
+        list1:[],
+        newCreate: true
       }
     },
     components: {
@@ -37,7 +38,15 @@
       draggable,
       Tool
     },
+    computed:{
+      orderedArray: function () {
+          return _.orderBy(this.ToolData, 'order')
+      }
+    },
     methods: {
+      doThis(){
+        console.log('runs')
+      },
       notConditional(){
         this.$emit('grid-notConditional')
       },
@@ -51,9 +60,14 @@
       }
     },
     props: [
-      'ToolData', 'loading','gridTitle'
+      'ToolData', 'loading','gridTitle', 'state'
     ],
     created() {
+      // if (this.newCreate)
+      // console.log(this.orderedArray)
+      // this.ToolList = this.orderedArray
+      // console.log("DEBUG TOOLIST" +this.ToolList)
+      // this.newCreate = false
     }
 
   }

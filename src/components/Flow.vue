@@ -55,7 +55,7 @@
     padding-right: 0px;
     width: auto;
     /*background-color: #000000;*/
-    transition: box-shadow 0.1s ease-in-out;
+    transition: 0.15s ease-in-out;
     font-size: larger;
     color: white;
     user-select: none;

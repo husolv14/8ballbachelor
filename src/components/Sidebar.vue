@@ -14,23 +14,15 @@
       >
         <span slot="footer" class="dialog-footer">
         <el-button @click="close">Avbryt</el-button>
-        <el-button type="primary" @click="postWidget(formData); update">Legg Til</el-button>
+        <!--<el-button type="primary" @click="postWidget(formData); update">Legg Til</el-button>-->
         </span>
         <el-form>
           Navn
           <el-input v-model="formData.name"></el-input>
-          <!--Database navn-->
-          <!--<el-input v-model="formData.dbName"></el-input>-->
-          <!--<el-select>-->
-            <!--<el-option>-->
-
-            <!--</el-option>-->
-          <!--</el-select>-->
           <br/>
         </el-form>
       </el-dialog>
     </div>
-    <el-button class="refresh" type="info" icon="el-icon-refresh" @click="update" circle></el-button>
   </div>
 </template>
 
