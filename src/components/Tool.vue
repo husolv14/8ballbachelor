@@ -1,5 +1,5 @@
 <template>
-  <div @change="test" @dblclick="showModal=true">
+  <div @dblclick="showModal=true">
     <div draggable="true" @destroy="destroyEmit">
       <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
@@ -13,8 +13,19 @@
         <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitTool(value)">Lagre</el-button>
         <el-button @click="showModal= false">Avbryt</el-button>
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="showSure">
+  <div>Er du sikker?<br> </div>
+  <div style="text-align: right; margin: 0">
+    <el-button size="mini" type="text" @click="showSure = false">Avbryt</el-button>
+    <el-button type="danger" size="mini" @click="destroyEmit(toolItem.id)">Bekreft</el-button>
+  </div>
+  <el-button class="del" type="danger" icon="el-icon-delete" circle slot="reference"></el-button>
+</el-popover>
 
-          <el-button icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>
+          <!--<el-button class="del" type="danger" icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>-->
         </span>
       </el-dialog>
     </div>
@@ -34,7 +45,8 @@ import Alarm from '../forms/Alarm'
         // widgetData: [],
         // errors: [],
         showModal: false,
-        conditional: false
+        conditional: false,
+        showSure: false
       }
     },
     components:{
@@ -44,7 +56,7 @@ import Alarm from '../forms/Alarm'
       Alarm
     },
     props: [
-      'toolItem', 'index', 'change'
+      'toolItem', 'index'
     ],
     methods: {
       test(){
@@ -61,6 +73,7 @@ import Alarm from '../forms/Alarm'
       },
       destroyEmit(id){
         console.log('Starting destroy emit with ID : ' + id)
+        this.showSure= false
         this.showModal=false
         this.$emit('destroy', id)
       },
@@ -108,14 +121,9 @@ import Alarm from '../forms/Alarm'
   }
   .toolText{
   }
-
-  /*.item:active {*/
-    /*cursor: grabbing;*/
-  /*}*/
-
-  /*.item:active:hover {*/
-    /*cursor: grabbing*/
-  /*}*/
+  .del{
+    margin-left: 15px;
+  }
   .thisText{
     padding-top: 10px;
   }

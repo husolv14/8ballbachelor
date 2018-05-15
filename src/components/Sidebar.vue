@@ -3,10 +3,10 @@
     <h1 class="title">Løp</h1>
     <!--<api-fetch v-model="FlowData"></api-fetch>-->
     <div  v-model="FlowData" v-for="item in FlowData">
-      <Widget @updateGrid="updateGrid" :FlowItem="item"></Widget>
+      <Flow @editFlow="editFlow" @updateGrid="updateGrid" :FlowItem="item"></Flow>
     </div>
     <div>
-      <el-button class="button" type="primary" @click="showModal = true" >{{name}} <i class="el-icon-plus el-icon-right"></i></el-button>
+      <el-button class="button" type="primary" @click="showModal = true" >{{name}} <i class="el-icon-plus"></i></el-button>
       <el-dialog
         :title="name"
         :visible.sync="showModal"
@@ -14,7 +14,7 @@
       >
         <span slot="footer" class="dialog-footer">
         <el-button @click="close">Avbryt</el-button>
-        <!--<el-button type="primary" @click="postWidget(formData); update">Legg Til</el-button>-->
+        <el-button type="primary" @click="postWidget(formData)">Legg Til</el-button>
         </span>
         <el-form>
           Navn
@@ -28,24 +28,23 @@
 
 <script>
 // import Widget from '../components/Widget.vue'
-import Widget from './Flow'
+import Flow from './Flow'
 
 export default {
   name: 'Sidebar',
   data () {
     return {
       id: '',
+      name:"Legg til nytt løp",
       showModal: false,
-      name: 'Legg til nytt løp',
       formData: {
-        name: '',
-        dbName: ''
+        name: ''
       },
       loading: false
     }
   },
   components: {
-    Widget
+    Flow
   },
   created () {
   },
@@ -63,6 +62,9 @@ export default {
     updateGrid (id,name) {
       console.log('Debug : DETTE ER id ' + id)
       this.$emit('sidebar-UpdateGrid', id, name)
+    },
+    editFlow(id){
+      this.$emit('editFlow',id)
     }
   },
   props: ['FlowData']

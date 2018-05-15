@@ -1,55 +1,9 @@
 {
   "fl_wi_rel": [
     {
-      "name": "Mail",
-      "widgetId": 2,
-      "id": 7
-    },
-    {
-      "name": "Vent",
-      "widgetId": 1,
-      "id": 14
-    },
-    {
-      "name": "Gjenta",
-      "widgetId": 1,
-      "id": 15
-    },
-    {
-      "name": "Alarm",
-      "widgetId": 1,
-      "id": 16
-    },
-    {
-      "name": "Mail",
-      "widgetId": 1,
-      "id": 17
-    },
-    {
-      "name": "Conditional",
-      "widgetId": 1,
-      "id": 18,
-      "tools": [
-        {
-          "name": "Mail"
-        }
-      ]
-    },
-    {
       "name": "Conditional",
       "widgetId": 2,
       "id": 19
-    },
-    {
-      "name": "Vent",
-      "widgetId": 1,
-      "id": 21
-    },
-    {
-      "name": "Vent",
-      "widgetId": 4,
-      "order": 1,
-      "id": 24
     },
     {
       "name": "Mail",
@@ -58,22 +12,52 @@
       "id": 27
     },
     {
-      "name": "Etter",
+      "name": "Gjenta",
       "widgetId": 5,
-      "order": 2,
-      "id": 28
+      "order": 3,
+      "id": 31
     },
     {
-      "name": "Før",
-      "widgetId": 5,
+      "name": "Mail",
+      "widgetId": 4,
       "order": 1,
-      "id": 29
+      "id": 32
+    },
+    {
+      "name": "Mail",
+      "widgetId": 6,
+      "order": 1,
+      "id": 33
+    },
+    {
+      "name": "Vent",
+      "widgetId": 6,
+      "order": 2,
+      "id": 34
+    },
+    {
+      "name": "Mail",
+      "widgetId": 5,
+      "order": 2,
+      "id": 36
+    },
+    {
+      "name": "Mail",
+      "widgetId": 5,
+      "order": 3,
+      "id": 37
     },
     {
       "name": "Gjenta",
       "widgetId": 4,
       "order": 2,
-      "id": 30
+      "id": 38
+    },
+    {
+      "name": "Mail",
+      "widgetId": 1,
+      "order": 1,
+      "id": 39
     }
   ],
   "widget": [
@@ -94,42 +78,29 @@
       "name": "Alarm"
     },
     {
-      "widgetId": 2,
-      "name": "Annet"
-    },
-    {
-      "widgetId": 2,
-      "name": "Osv"
-    },
-    {
       "name": "Conditional"
     }
   ],
   "flow": [
     {
       "name": "Legg til ny ansatt",
-      "dbName": "Ansatt",
       "id": 1,
       "order": []
     },
     {
       "name": "Endre mailfrekvens",
-      "dbName": "asda",
       "id": 2
     },
     {
       "name": "Lets do it",
-      "dbName": "",
       "id": 3
     },
     {
       "name": "Tester",
-      "dbName": "",
       "id": 4
     },
     {
-      "name": "lol",
-      "dbName": "",
+      "name": "Yo",
       "id": 5
     }
   ]

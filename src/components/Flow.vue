@@ -1,6 +1,6 @@
 <template>
   <a :href=" '#' + FlowItem.id" draggable="false" class="link">
-    <div :id="FlowItem.id" draggable="false" @click="upDateGrid(FlowItem.id, FlowItem.name)" class="item">
+    <div :id="FlowItem.id" draggable="false" @dblclick ="editFlow(FlowItem.id)"  @click="upDateGrid(FlowItem.id, FlowItem.name)" class="item">
       {{FlowItem.name}}
     </div>
   </a>
@@ -33,9 +33,10 @@
         console.log("Debug : Cancel")
         this.showModal = false
         return showModal
-
-      }
-
+      },
+      editFlow(id){
+        this.$emit('editFlow', id)
+      },
     }
   }
 </script>
@@ -73,5 +74,7 @@
     text-decoration-line: none ;
     text-decoration-style: unset;
     text-align: left;
+  }
+  #tips{
   }
 </style>

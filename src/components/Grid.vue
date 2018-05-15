@@ -5,8 +5,8 @@
         <div class="titleText">{{gridTitle}}</div>
       </div>
       <div>
-        <draggable :list="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid', scroll: true}">
-          <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in orderedArray" :key="index" :toolItem="item" :index="index">
+        <draggable v-model="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid', scroll: true}">
+            <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index +1">
           </Tool>
         </draggable>
       </div>
@@ -28,6 +28,7 @@
         name: "Legg til flere verktøy",
         value: "",
         ToolList: {},
+
         thisThing: [],
         list1:[],
         newCreate: true
@@ -38,11 +39,11 @@
       draggable,
       Tool
     },
-    computed:{
-      orderedArray: function () {
-          return _.orderBy(this.ToolData, 'order')
-      }
-    },
+    // computed:{
+    //   orderedArray: function () {
+    //       return  _.orderBy(this.ToolData, 'order')
+    //   }
+    // },
     methods: {
       doThis(){
         console.log('runs')
@@ -63,6 +64,7 @@
       'ToolData', 'loading','gridTitle', 'state'
     ],
     created() {
+      this.ToolList = this.ToolData
       // if (this.newCreate)
       // console.log(this.orderedArray)
       // this.ToolList = this.orderedArray

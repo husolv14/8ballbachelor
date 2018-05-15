@@ -1,9 +1,10 @@
 <template>
   <div class="mainWrapper">
     <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid"
-             @addNewFlow="addNewFlow" :FlowData="FlowData">
+             @addNewFlow="addNewFlow" :FlowData="FlowData" @editFlow="editFlow">
     </sidebar>
-    <grid @createNewGrid="createNewGrid" @destroy="deleteTool" :state="state" :loading="loadingGrid" :ToolData="ToolPost"
+    <grid @createNewGrid="createNewGrid" @destroy="deleteTool" :state="state" :loading="loadingGrid"
+          :ToolData="orderedArray"
           :gridTitle="gridTitle"/>
     <grid v-if="newGrid" :ToolData="gridList" :grid-title="gridTitle + ' conditional'"/>
     <el-dialog
@@ -20,11 +21,49 @@
         <el-option v-for="item in ToolList" :key="item.name" :label="item.name" :value="item.name">
         </el-option>
       </el-select>
-      <div class="form" v-if="value === 'Mail'"><Mail></Mail></div>
-      <div class="form" v-if="value === 'Vent'"><Vent></Vent></div>
-      <div class="form" v-if="value === 'Gjenta'"><Gjenta></Gjenta></div>
-      <div class="form" v-if="value=== 'Alarm'"><Alarm></Alarm></div>
+      <div class="form" v-if="value === 'Mail'">
+        <Mail></Mail>
+      </div>
+      <div class="form" v-if="value === 'Vent'">
+        <Vent></Vent>
+      </div>
+      <div class="form" v-if="value === 'Gjenta'">
+        <Gjenta></Gjenta>
+      </div>
+      <div class="form" v-if="value=== 'Alarm'">
+        <Alarm></Alarm>
+      </div>
 
+    </el-dialog>
+    <el-dialog
+      :title="editedFlow.name"
+      :visible.sync="showEditModal"
+      width="40%"
+    >
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="changeFlow(editedFlow.name)">Lagre</el-button>
+        <el-button @click="">Avbryt</el-button>
+
+
+        <el-popover
+          placement="top"
+          width="160"
+          v-model="showSure">
+  <div>Er du sikker?<br> </div>
+  <div style="text-align: right; margin: 0">
+    <el-button size="mini" type="text" @click="showSure = false">Avbryt</el-button>
+    <el-button type="danger" size="mini" @click="deleteFlow(editedFlow.id)">Bekreft</el-button>
+  </div>
+  <el-button class="del" type="danger" icon="el-icon-delete" circle slot="reference"></el-button>
+</el-popover>
+
+      </span>
+      <el-form>
+        <el-form-item :label="'Navn på løpet'">
+          <el-input v-model="editedFlow.name">
+          </el-input>
+        </el-form-item>
+      </el-form>
     </el-dialog>
     <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
     <!--<el-button class="refresh" type="info" icon="el-icon-refresh" @click="update(state)" circle></el-button>-->
@@ -60,7 +99,22 @@
         state: "",
         gridList: {},
         newGrid: false,
-        gridTitle: "Drag and Drop"
+        gridTitle: "Drag and Drop",
+        editedFlow: {},
+        showEditModal: false,
+        showSure: false,
+        delay: 100,
+        timer: null,
+        clicks: 0,
+
+        editForm:[
+          {name:""}
+        ]
+      }
+    },
+    computed: {
+      orderedArray: function () {
+        return _.orderBy(this.ToolPost, 'order')
       }
     },
     components: {
@@ -72,6 +126,8 @@
       Alarm
     },
     methods: {
+      changeFlow(){
+      },
       createNewGrid(array) {
         // this.gridList.push(this.toolPost)
         // this.gridList.push(array)
@@ -82,8 +138,27 @@
         console.log('Debug : MainWrapper - Delete from json with id : ' + id)
         axios.delete('http://localhost:3000/fl_wi_rel/' + id).then(response => {
           console.log(response.data)
-        }).then(response =>{
+        }).then(response => {
           this.updateGrid(this.state, this.gridTitle)
+        }).catch(e => {
+          console.log(e)
+        })
+      },
+      deleteFlow(id) {
+        axios.delete('http://localhost:3000/fl_wi_rel/', {data: {widgetId: id}}).then(response=>{
+        })
+        axios.delete('http://localhost:3000/flow/' + id).then(response => {
+          this.updateFlowList()
+          this.showSure = false
+          this.showEditModal = false
+          this.updateGrid()
+
+        })
+      },
+      editFlow(id) {
+        axios.get('http://localhost:3000/flow?id=' + id).then(response => {
+          this.editedFlow = response.data[0]
+          this.showEditModal = true
         }).catch(e => {
           console.log(e)
         })
@@ -101,13 +176,16 @@
           .then(response => {
             // JSON responses are automatically parsed.
             this.ToolPost = response.data
-            console.log(response.data)
+            //console.log(response.data)
             this.loadingGrid = false
             this.gridCount = this.ToolPost.length
-            this.$message({
+            if (this.gridCount) {
+            this.$notify({
               message: 'Hentet ' + this.gridCount + ' data fra tools.',
-              type: 'success'
+              type: 'success',
+              duration: 1500
             });
+            }
 
           })
           .catch(e => {
@@ -143,8 +221,7 @@
 
       addNewFlow(formData) {
         axios.post(`http://localhost:3000/flow`, {
-            name: formData.name,
-            dbName: formData.dbName
+            name: formData.name
           }
         )
           .then(response => {
@@ -166,30 +243,31 @@
         })
       },
 
-        updateFlowList() {
-          this.loadingSidebar = true
-          console.log("Debug : UPDATING FLOW LIST")
-          axios.get(`http://localhost:3000/flow`)
-            .then(response => {
-              // JSON responses are automatically parsed.
-              this.FlowData = response.data
-              this.loadingSidebar = false
-            })
-            .catch(e => {
-              this.errors.push(e)
-            })
-          this.updateGrid(this.state, this.gridTitle)
-        }
-      },
-      changeState(state) {
-
-        this.state = state
-        console.log("Debug : STATE IS FOLLOWING : " + this.state)
-      },
-
-      created() {
-      this.updateFlowList()
+      updateFlowList() {
+        this.loadingSidebar = true
+        console.log("Debug : UPDATING FLOW LIST")
+        axios.get(`http://localhost:3000/flow`)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.FlowData = response.data
+            this.loadingSidebar = false
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+        this.updateGrid(this.state, this.gridTitle)
       }
+    },
+    changeState(state) {
+
+      this.state = state
+      console.log("Debug : STATE IS FOLLOWING : " + this.state)
+    },
+
+    created() {
+      this.updateFlowList()
+    },
+
   }
 
 </script>
@@ -216,15 +294,19 @@
     float: right;
     margin-right: 25px;
   }
+
   /*.selected{*/
-    /*margin-bottom: 25px;*/
+  /*margin-bottom: 25px;*/
   /*}*/
-  .form{
+  .form {
     margin-top: 25px;
     width: 600px;
     position: relative;
     margin: auto;
     margin-bottom: 25px;
+  }
+  .del{
+    margin-left: 15px;
   }
 
 </style>
