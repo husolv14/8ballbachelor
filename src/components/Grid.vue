@@ -5,7 +5,7 @@
         <div class="titleText">{{gridTitle}}</div>
       </div>
       <div>
-        <draggable v-model="ToolData" v-loading="loading" class="drag" :options="{animation:180, group:'grid', scroll: true}">
+        <draggable v-model="ToolData" v-loading="loading" class="drag" :options="{animation:130, group:'grid', scroll: true}">
             <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index +1">
           </Tool>
         </draggable>

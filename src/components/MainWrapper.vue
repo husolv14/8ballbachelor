@@ -13,8 +13,8 @@
       width="40%"
     >
       <span slot="footer" class="dialog-footer">
-        <el-button @click="showModal= false">Avbryt</el-button>
         <el-button type="primary" @click="submitTool(value)">Lagre</el-button>
+        <el-button @click="showModal= false">Avbryt</el-button>
         </span>
 
       <el-select class="selected" v-model="value" placeholder="Velg verktøy">
@@ -41,34 +41,32 @@
       width="40%"
     >
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="changeFlow(editedFlow.name)">Lagre</el-button>
-        <el-button @click="">Avbryt</el-button>
-
-
+        <el-button type="primary" @click="storeEdit(editedFlow)">Lagre</el-button>
+        <el-button @click="showEditModal = false">Avbryt</el-button>
         <el-popover
           placement="top"
           width="160"
           v-model="showSure">
-  <div>Er du sikker?<br> </div>
-  <div style="text-align: right; margin: 0">
-    <el-button size="mini" type="text" @click="showSure = false">Avbryt</el-button>
-    <el-button type="danger" size="mini" @click="deleteFlow(editedFlow.id)">Bekreft</el-button>
-  </div>
-  <el-button class="del" type="danger" icon="el-icon-delete" circle slot="reference"></el-button>
-</el-popover>
-
+            <div>Er du sikker?<br> </div>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="showSure = false">Avbryt</el-button>
+                <el-button type="danger" size="mini" @click="deleteFlow(editedFlow.id)">Bekreft</el-button>
+              </div>
+              <el-button class="del" type="danger" icon="el-icon-delete" circle slot="reference"></el-button>
+            </el-popover>
       </span>
       <el-form>
-        <el-form-item :label="'Navn på løpet'">
+        <el-form-item :label="'Endre navn på løpet'">
           <el-input v-model="editedFlow.name">
           </el-input>
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
-    <!--<el-button class="refresh" type="info" icon="el-icon-refresh" @click="update(state)" circle></el-button>-->
-    <el-button class="button3" type="success" @click="">Lagre løp</el-button>
-    <!--modal/-->
+    <div>
+      <el-button class="button3" type="success" @click="">Lagre løp</el-button>
+      <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
+
+    </div>
   </div>
 
 </template>
@@ -107,8 +105,8 @@
         timer: null,
         clicks: 0,
 
-        editForm:[
-          {name:""}
+        editForm: [
+          {name: ""}
         ]
       }
     },
@@ -126,8 +124,6 @@
       Alarm
     },
     methods: {
-      changeFlow(){
-      },
       createNewGrid(array) {
         // this.gridList.push(this.toolPost)
         // this.gridList.push(array)
@@ -145,7 +141,7 @@
         })
       },
       deleteFlow(id) {
-        axios.delete('http://localhost:3000/fl_wi_rel/', {data: {widgetId: id}}).then(response=>{
+        axios.delete('http://localhost:3000/fl_wi_rel/', {data: {widgetId: id}}).then(response => {
         })
         axios.delete('http://localhost:3000/flow/' + id).then(response => {
           this.updateFlowList()
@@ -159,8 +155,23 @@
         axios.get('http://localhost:3000/flow?id=' + id).then(response => {
           this.editedFlow = response.data[0]
           this.showEditModal = true
-        }).catch(e => {
-          console.log(e)
+        }).catch(error => {
+          this.$notify({
+            message: 'There was an error ' + error,
+            type: 'error',
+            duration: 1500
+          });
+        })
+      },
+      storeEdit(editedFlow) {
+        axios.put('http://localhost:3000/flow/' + editedFlow.id, {
+          name: editedFlow.name
+        }).then(response => {
+          console.log(response)
+          this.updateFlowList()
+          this.showEditModal = false
+        }).catch(error => {
+          console.log(error)
         })
       },
       updateGrid(state, name) {
@@ -180,20 +191,23 @@
             this.loadingGrid = false
             this.gridCount = this.ToolPost.length
             if (this.gridCount) {
-            this.$notify({
-              message: 'Hentet ' + this.gridCount + ' data fra tools.',
-              type: 'success',
-              duration: 1500
-            });
+              this.$notify({
+                message: 'Hentet ' + this.gridCount + ' widgets.',
+                type: 'success',
+                duration: 1500
+              });
             }
 
           })
-          .catch(e => {
-            this.errors.push(e)
+          .catch(error => {
+            this.$notify({
+              message: 'There was an error ' + error,
+              type: 'error',
+              duration: 1500
+            });
           })
 
       },
-
 
       getTool() {
         this.showModal = true
@@ -227,8 +241,12 @@
           .then(response => {
             this.updateFlowList()
           })
-          .catch(e => {
-            this.errors.push(e)
+          .catch(error => {
+            this.$notify({
+              message: 'There was an error ' + error,
+              type: 'error',
+              duration: 1500
+            });
           })
         this.showModal = false
         this.$emit('UPDATE')
@@ -252,8 +270,12 @@
             this.FlowData = response.data
             this.loadingSidebar = false
           })
-          .catch(e => {
-            this.errors.push(e)
+          .catch(error => {
+            this.$notify({
+              message: 'There was an error ' + error,
+              type: 'error',
+              duration: 1500
+            });
           })
         this.updateGrid(this.state, this.gridTitle)
       }
@@ -287,7 +309,10 @@
   .button2 {
     background-color: rgb(32, 168, 216);
     border: 0px;
-    border-radius: 0px;
+    float: right;
+    position: relative;
+    margin-right: 25px;
+    height: 40px;
   }
 
   .button3 {
@@ -305,7 +330,8 @@
     margin: auto;
     margin-bottom: 25px;
   }
-  .del{
+
+  .del {
     margin-left: 15px;
   }
 

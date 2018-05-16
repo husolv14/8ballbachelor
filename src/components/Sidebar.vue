@@ -1,6 +1,21 @@
 <template>
   <div v-loading="loading" class="Sidebar">
-    <h1 class="title">Løp</h1>
+    <div>
+      <el-popover
+        placement="right-start"
+        width="200"
+        trigger="hover">
+        <div style="text-align: center; font-weight: bold">
+          Klikk for å hente løpet <br>
+          Dobbeltklikk for å endre/slette
+        </div>
+        <el-button slot="reference" circle class="help el-icon-question" ></el-button>
+
+      </el-popover>
+
+      <h1 class="title">Løp</h1>
+
+    </div>
     <!--<api-fetch v-model="FlowData"></api-fetch>-->
     <div  v-model="FlowData" v-for="item in FlowData">
       <Flow @editFlow="editFlow" @updateGrid="updateGrid" :FlowItem="item"></Flow>
@@ -105,4 +120,13 @@ export default {
     padding-bottom: 20px;
     padding-right: 0px;
   }
+  .help{
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right;
+    position: relative;
+    background-color: rgb(33, 43, 49);
+    border:0;
+  }
+
 </style>

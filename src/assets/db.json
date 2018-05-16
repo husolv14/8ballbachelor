@@ -83,9 +83,8 @@
   ],
   "flow": [
     {
-      "name": "Legg til ny ansatt",
-      "id": 1,
-      "order": []
+      "name": "Legg til nye ansatte",
+      "id": 1
     },
     {
       "name": "Endre mailfrekvens",
@@ -100,7 +99,7 @@
       "id": 4
     },
     {
-      "name": "Yo",
+      "name": "Forandre navn på flow",
       "id": 5
     }
   ]
