@@ -6,7 +6,7 @@
       </div>
       <div>
         <draggable v-model="ToolData" v-loading="loading" class="drag" :options="{animation:130, group:'grid', scroll: true}">
-            <Tool class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index +1">
+            <Tool @rundata="runData" :run='run' class="item" @isConditional="newDraggable" @destroy="destroy" v-for="(item, index) in ToolData" :key="index" :toolItem="item" :index="index +1">
           </Tool>
         </draggable>
       </div>
@@ -58,18 +58,16 @@
       destroy(id) {
         console.log("DESTROY emit from grid with id : " + id)
         this.$emit('destroy', id)
+      },
+      runData(form, item, index){
+        this.$emit('rundata', form, item, index)
       }
     },
     props: [
-      'ToolData', 'loading','gridTitle', 'state'
+      'ToolData', 'loading','gridTitle', 'state', 'run'
     ],
     created() {
       this.ToolList = this.ToolData
-      // if (this.newCreate)
-      // console.log(this.orderedArray)
-      // this.ToolList = this.orderedArray
-      // console.log("DEBUG TOOLIST" +this.ToolList)
-      // this.newCreate = false
     }
 
   }

@@ -12,12 +12,6 @@
       "id": 27
     },
     {
-      "name": "Gjenta",
-      "widgetId": 5,
-      "order": 3,
-      "id": 31
-    },
-    {
       "name": "Mail",
       "widgetId": 4,
       "order": 1,
@@ -36,18 +30,6 @@
       "id": 34
     },
     {
-      "name": "Mail",
-      "widgetId": 5,
-      "order": 2,
-      "id": 36
-    },
-    {
-      "name": "Mail",
-      "widgetId": 5,
-      "order": 3,
-      "id": 37
-    },
-    {
       "name": "Gjenta",
       "widgetId": 4,
       "order": 2,
@@ -58,6 +40,42 @@
       "widgetId": 1,
       "order": 1,
       "id": 39
+    },
+    {
+      "name": "Vent",
+      "widgetId": 5,
+      "order": 2,
+      "id": 41
+    },
+    {
+      "name": "Vent",
+      "widgetId": 5,
+      "order": 3,
+      "id": 42
+    },
+    {
+      "name": "Vent",
+      "widgetId": 5,
+      "order": 4,
+      "id": 43
+    },
+    {
+      "name": "Vent",
+      "widgetId": 5,
+      "order": 5,
+      "id": 44
+    },
+    {
+      "name": "Vent",
+      "widgetId": 5,
+      "order": 6,
+      "id": 45
+    },
+    {
+      "name": "Mail",
+      "widgetId": 1,
+      "order": 2,
+      "id": 46
     }
   ],
   "widget": [
@@ -91,16 +109,12 @@
       "id": 2
     },
     {
-      "name": "Lets do it",
+      "name": "Changes",
       "id": 3
     },
     {
       "name": "Tester",
       "id": 4
-    },
-    {
-      "name": "Forandre navn på flow",
-      "id": 5
     }
   ]
 }
