@@ -3,9 +3,11 @@
     <sidebar v-loading="loadingSidebar" @sidebar-UpdateGrid="updateGrid"
              @addNewFlow="addNewFlow" :FlowData="FlowData" @editFlow="editFlow">
     </sidebar>
-    <grid @createNewGrid="createNewGrid" @destroy="deleteTool" :state="state" :loading="loadingGrid"
+    <grid @rundata="runData" @createNewGrid="createNewGrid" @destroy="deleteTool" :state="state" :loading="loadingGrid"
           :ToolData="orderedArray"
-          :gridTitle="gridTitle"/>
+          :gridTitle="gridTitle"
+          :run="run"
+    />
     <grid v-if="newGrid" :ToolData="gridList" :grid-title="gridTitle + ' conditional'"/>
     <el-dialog
       :title="name"
@@ -63,10 +65,21 @@
       </el-form>
     </el-dialog>
     <div>
-      <el-button class="button3" type="success" @click="">Lagre løp</el-button>
+      <el-button class="button3" type="success" @click="runFlow()">Lagre løp</el-button>
       <el-button class="button2" type="success" @click="getTool">Legg til nye verktøy</el-button>
-
     </div>
+
+    <el-dialog
+      :title="'Output'"
+      :visible.sync="showRunModal"
+      width="40%"
+    >
+      <div v-for="item in dataForm">{{item}}</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="showRunModal = false">Lukk</el-button>
+        </span>
+    </el-dialog>
+
   </div>
 
 </template>
@@ -104,10 +117,13 @@
         delay: 100,
         timer: null,
         clicks: 0,
-
+        showRunModal: false,
+        run: false,
+        runArray: [],
         editForm: [
           {name: ""}
-        ]
+        ],
+        dataForm:[]
       }
     },
     computed: {
@@ -125,8 +141,6 @@
     },
     methods: {
       createNewGrid(array) {
-        // this.gridList.push(this.toolPost)
-        // this.gridList.push(array)
         this.newGrid = true
         this.gridList = array
       },
@@ -170,6 +184,7 @@
           console.log(response)
           this.updateFlowList()
           this.showEditModal = false
+          this.gridTitle = editedFlow.name
         }).catch(error => {
           console.log(error)
         })
@@ -278,13 +293,30 @@
             });
           })
         this.updateGrid(this.state, this.gridTitle)
+      },
+      changeState(state) {
+
+        this.state = state
+        console.log("Debug : STATE IS FOLLOWING : " + this.state)
+      },
+
+      runFlow(array) {
+        this.showRunModal = true
+        this.run = true
+      },
+      runData(flow, item, index){
+        this.dataForm.push(item, flow)
+        this.dataForm.push(index)
+        //this.dataForm[index] = flow
+        // this.dataForm[] = item
+        // this.dataForm[2] = index
+        console.log("HER : " + item)
+        this.run = false
+
       }
     },
-    changeState(state) {
 
-      this.state = state
-      console.log("Debug : STATE IS FOLLOWING : " + this.state)
-    },
+
 
     created() {
       this.updateFlowList()
@@ -320,9 +352,6 @@
     margin-right: 25px;
   }
 
-  /*.selected{*/
-  /*margin-bottom: 25px;*/
-  /*}*/
   .form {
     margin-top: 25px;
     width: 600px;
@@ -333,6 +362,8 @@
 
   .del {
     margin-left: 15px;
+  }
+  .output{
   }
 
 </style>

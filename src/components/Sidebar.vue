@@ -5,10 +5,10 @@
         placement="right-start"
         width="200"
         trigger="hover">
-        <div style="text-align: center; font-weight: bold">
-          Klikk for å hente løpet <br>
-          Dobbeltklikk for å endre/slette
-        </div>
+        <p style="text-align: center;">
+          Dobbeltklikk for å endre/slette <br>
+          Klikk for å hente løpet
+        </p>
         <el-button slot="reference" circle class="help el-icon-question" ></el-button>
 
       </el-popover>

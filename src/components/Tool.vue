@@ -4,14 +4,15 @@
       <p class="toolText">{{toolItem.name}}</p>
       <el-dialog :title="toolItem.name"
                  :visible.sync="showModal"
-                 width="40%">
+                 width="40%"
+                  >
 
-        <div class="form" v-if="toolItem.name === 'Mail'"><Mail></Mail></div>
-        <div class="form" v-if="toolItem.name === 'Vent'"><Vent></Vent></div>
-        <div class="form" v-if="toolItem.name === 'Gjenta'"><Gjenta></Gjenta></div>
-        <div class="form" v-if="toolItem.name === 'Alarm'"><Alarm></Alarm></div>
+        <div  class="form" v-show="toolItem.name === 'Mail'"><Mail @mailform="handleForm" :run="run"></Mail></div>
+        <div :run="run" class="form" v-if="toolItem.name === 'Vent'"><Vent></Vent></div>
+        <div :run="run" class="form" v-if="toolItem.name === 'Gjenta'"><Gjenta></Gjenta></div>
+        <div :run="run" class="form" v-if="toolItem.name === 'Alarm'"><Alarm></Alarm></div>
         <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitTool(value)">Lagre</el-button>
+        <el-button type="primary" @click="showModal = false">Lagre</el-button>
         <el-button @click="showModal= false">Avbryt</el-button>
           <el-popover
             placement="top"
@@ -24,8 +25,6 @@
   </div>
   <el-button class="del" type="danger" icon="el-icon-delete" circle slot="reference"></el-button>
 </el-popover>
-
-          <!--<el-button class="del" type="danger" icon="el-icon-delete" circle @click="destroyEmit(toolItem.id)"></el-button>-->
         </span>
       </el-dialog>
     </div>
@@ -56,7 +55,7 @@ import Alarm from '../forms/Alarm'
       Alarm
     },
     props: [
-      'toolItem', 'index'
+      'toolItem', 'index', 'run'
     ],
     methods: {
       test(){
@@ -77,6 +76,13 @@ import Alarm from '../forms/Alarm'
         this.showModal=false
         this.$emit('destroy', id)
       },
+      handleForm(form){
+        console.log("Debug: Form received now converting id: "  + this.toolItem.id)
+        console.log("Debug: Index: "  + this.index)
+        console.log("Debug: Order: " + this.toolItem)
+        console.log(form)
+        this.$emit('rundata', form, this.toolItem, this.index)
+      }
 
     },
     created(){
@@ -84,7 +90,10 @@ import Alarm from '../forms/Alarm'
           this.conditional = true
           this.$emit('isConditional', this.toolItem.tools)
         }
-    }
+    },
+    // mounted(){
+    //   this.showModal = true
+    // }
   }
 </script>
 
